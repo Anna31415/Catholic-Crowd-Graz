@@ -1,0 +1,373 @@
+##  Zugriffsmethoden: Vergleich
+
+Es gibt **drei Hauptwege**, wie die Website auf die Sheets-Daten zugreifen kann:
+
+### 🟢 Methode 1: CSV Export (EMPFOHLEN)
+
+**Wie es funktioniert:**  
+Google Sheets kann automatisch als CSV exportiert werden – kein API-Key nötig!
+
+#### Anleitung
+
+```javascript
+const SPREADSHEET_ID = '1nbuUu9C1qppWsV4WnVNlCHLYVb3M8D8tVJ-HIBRyg9s';
+const CSV_EXPORT_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv`;
+
+async function fetchEventsFromCSV() {
+  try {
+    const response = await fetch(CSV_EXPORT_URL);
+    const csvText = await response.text();
+    
+    // CSV parsen (mit Papa Parse Library oder manuell)
+    const rows = csvText.trim().split('\n');
+    const headers = rows[0].split(',');
+    
+    const events = rows.slice(1).map(row => {
+      const cols = row.split(',');
+      return {
+        title: cols[0],
+        organisation: cols[1],
+        date: cols[2],
+        startTime: cols[3],
+        endTime: cols[4] || null,
+        location: cols[5],
+        description: cols[6] || ''
+      };
+    });
+    
+    return events;
+  } catch (error) {
+    console.error('Fehler beim CSV-Export:', error);
+    return [];
+  }
+}
+```
+
+**Mit Papa Parse (empfohlen für robustes CSV-Parsing):**
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<script>
+const SPREADSHEET_ID = '1nbuUu9C1qppWsV4WnVNlCHLYVb3M8D8tVJ-HIBRyg9s';
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv`;
+
+async function fetchEvents() {
+  const response = await fetch(CSV_URL);
+  const csvText = await response.text();
+  
+  // Papa Parse konvertiert CSV → Array of Objects
+  const results = Papa.parse(csvText, { header: true });
+  return results.data.filter(row => row.Titel); // Leere Zeilen filtern
+}
+</script>
+```
+
+#### ✅ Vorteile
+
+- **✓ Keine Authentifizierung nötig** – kein API-Key
+- **✓ Keine Rate-Limits** – beliebig oft abrufbar
+- **✓ Einfach und robust** – Standard CSV-Format
+- **✓ Offline-Fallback möglich** – auch lokal cachebar
+- **✓ Debugging leicht** – CSV ist menschlich lesbar
+- **✓ Ideal für öffentliche Daten** – sicherer als API
+
+#### ❌ Nachteile
+
+- **✗ Caching-Verzögerung** – Google cached CSV 5-10 Minuten
+- **✗ CSV-Parsing fehleranfällig** – Kommas in Feldern können Probleme verursachen (Papa Parse löst das)
+- **✗ Keine echte Echtzeit** – nicht ideal für live-Events (z.B. "Event startet jetzt!")
+
+---
+
+### 🔵 Methode 2: Google Sheets API (mit API-Key)
+
+**Wie es funktioniert:**  
+Strukturierter API-Aufruf, returns JSON statt CSV. Besser für komplexe Datentypen.
+
+#### Anleitung
+
+**Schritt 1: API-Key erstellen** (kostenlos)
+
+1. Gehe zu [Google Cloud Console](https://console.cloud.google.com/)
+2. Neues Projekt: **"Catholic Crowd Graz"**
+3. Aktiviere **Google Sheets API** (APIs & Services → Library)
+4. Gehe zu **Credentials** → **+ Create Credentials** → **API Key**
+5. Kopiere den generierten Key
+
+**Schritt 2: Code schreiben**
+
+```javascript
+const SPREADSHEET_ID = '1nbuUu9C1qppWsV4WnVNlCHLYVb3M8D8tVJ-HIBRyg9s';
+const API_KEY = 'YOUR_API_KEY'; // In .env speichern, nicht ins Git!
+const RANGE = 'Sheet1!A1:G'; // Alle relevanten Spalten
+
+async function fetchEventsFromAPI() {
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?key=${API_KEY}`;
+  
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    const headers = data.values[0]; // Erste Zeile = Headers
+    const events = data.values.slice(1).map(row => ({
+      title: row[0],
+      organisation: row[1],
+      date: row[2],
+      startTime: row[3],
+      endTime: row[4] || null,
+      location: row[5],
+      description: row[6] || ''
+    }));
+    
+    return events;
+  } catch (error) {
+    console.error('Fehler bei API-Abruf:', error);
+    return [];
+  }
+}
+```
+
+#### ✅ Vorteile
+
+- **✓ Strukturierte Antwort** – JSON statt CSV
+- **✓ Echtzeit-Daten** – sofort verfügbar (keine Caching-Verzögerung)
+- **✓ Type-safe** – besseres Error-Handling möglich
+- **✓ Skalierbar** – auch für größere Datensätze
+- **✓ Offizielle Google-Unterstützung** – gut dokumentiert
+
+#### ❌ Nachteile
+
+- **✗ API-Key erforderlich** – Setup-Overhead
+- **✗ Rate-Limits** – max. 500 Requests/Minute (aber für dich ausreichend)
+- **✗ Security-Risk** – API-Key muss geheim bleiben (→ .env File, nicht ins Git!)
+- **✗ Komplexer** – mehr Code, mehr Fehlerquellen
+
+---
+
+### 🟣 Methode 3: Google Apps Script (Backend-Lösung)
+
+**Wie es funktioniert:**  
+Ein Google Apps Script lädt die Sheets-Daten und stellt sie via Webhook bereit.
+
+#### Anleitung (vereinfacht)
+
+1. Öffne das Google Sheets
+2. **Tools** → **Script Editor**
+3. Kopiere diesen Code:
+
+```javascript
+function doGet(e) {
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const data = sheet.getDataRange().getValues();
+  
+  const headers = data[0];
+  const events = data.slice(1).map(row => {
+    let obj = {};
+    headers.forEach((header, i) => {
+      obj[header] = row[i];
+    });
+    return obj;
+  });
+  
+  return ContentService
+    .createTextOutput(JSON.stringify(events))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+```
+
+4. **Deploy** → **New Deployment** → **Type: Web App**
+5. Execute as: dein Account
+6. Who has access: Anyone
+7. Copy the **Deployment URL**
+8. Nutze diese URL in deinem JS-Code
+
+```javascript
+const SCRIPT_URL = '...'; // Von oben
+
+fetch(SCRIPT_URL)
+  .then(r => r.json())
+  .then(events => console.log(events));
+```
+
+#### ✅ Vorteile
+
+- **✓ Echte Echtzeit** – keine Caching-Verzögerung
+- **✓ Kein API-Key** – einfache Deployment
+- **✓ Flexible Datenverarbeitung** – Geschäftslogik im Script
+- **✓ Geschützte API** – Deployment-URL ist kryptisch
+
+#### ❌ Nachteile
+
+- **✗ Google-Account nötig** – nicht anonym deploybar
+- **✗ Komplexer Setup** – mehr Google Cloud-Verständnis
+- **✗ Execution Time Limit** – max. 6 Min/Aufruf (für dich ok)
+- **✗ Overkill** – für eine einfache Plattform zu mächtig
+
+---
+
+## Empfehlung für Catholic Crowd Graz
+
+**🎯 Für dein Projekt: Methode 1 (CSV Export)**
+
+### Warum?
+
+1. **Einfach** – keine API-Keys, kein Setup
+2. **Sicher** – öffentliche Daten, keine Secrets needed
+3. **Robust** – CSV ist ein Standard-Format
+4. **Performant** – für ~200 Events mehr als ausreichend
+5. **Wartbar** – leicht zu debuggen und zu verstehen
+
+### Implementierung
+
+```javascript
+// js/data-loader.js
+
+const SPREADSHEET_ID = '1nbuUu9C1qppWsV4WnVNlCHLYVb3M8D8tVJ-HIBRyg9s';
+const CSV_EXPORT_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv`;
+
+// Cache: Daten alle 5 Minuten neu laden
+const CACHE_DURATION = 5 * 60 * 1000; // 5 min
+let cachedEvents = null;
+let lastFetchTime = 0;
+
+export async function getEvents() {
+  const now = Date.now();
+  
+  // Cache prüfen
+  if (cachedEvents && (now - lastFetchTime) < CACHE_DURATION) {
+    return cachedEvents;
+  }
+  
+  try {
+    const response = await fetch(CSV_EXPORT_URL);
+    const csvText = await response.text();
+    
+    // CSV parsen (einfach: split by comma/newline)
+    const lines = csvText.trim().split('\n');
+    const headers = lines[0].split(',');
+    
+    cachedEvents = lines.slice(1).map(line => {
+      const cols = line.split(',');
+      return {
+        title: cols[0] || '',
+        organisation: cols[1] || '',
+        date: cols[2] || '',
+        startTime: cols[3] || '',
+        endTime: cols[4] || null,
+        location: cols[5] || '',
+        description: cols[6] || ''
+      };
+    }).filter(e => e.title); // Leere Zeilen filtern
+    
+    lastFetchTime = now;
+    return cachedEvents;
+  } catch (error) {
+    console.error('Fehler beim Laden der Events:', error);
+    return cachedEvents || []; // Fallback auf alte Cache
+  }
+}
+```
+
+---
+
+## 5. Datenvalidierung
+
+**Die Website sollte diese Checks durchführen:**
+
+```javascript
+function validateEvent(event) {
+  const errors = [];
+  
+  // Pflichtfelder
+  if (!event.title?.trim()) errors.push('Titel fehlt');
+  if (!event.organisation?.trim()) errors.push('Organisation fehlt');
+  if (!event.date?.trim()) errors.push('Datum fehlt');
+  if (!event.startTime?.trim()) errors.push('Anfangszeit fehlt');
+  if (!event.location?.trim()) errors.push('Ort fehlt');
+  
+  // Format-Validierung
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/; // YYYY-MM-DD
+  if (event.date && !dateRegex.test(event.date)) {
+    errors.push(`Datumsformat ungültig: ${event.date}`);
+  }
+  
+  const timeRegex = /^\d{2}:\d{2}$/; // HH:MM
+  if (!timeRegex.test(event.startTime)) {
+    errors.push(`Anfangszeit ungültig: ${event.startTime}`);
+  }
+  
+  // Vergangenheit filtern
+  const eventDate = new Date(event.date);
+  if (eventDate < new Date()) {
+    errors.push(`Event liegt in der Vergangenheit: ${event.date}`);
+  }
+  
+  return {
+    valid: errors.length === 0,
+    errors
+  };
+}
+```
+
+---
+
+## 6. Fehlerbehandlung & Fallback
+
+**Was wenn Google Sheets nicht erreichbar ist?**
+
+```javascript
+async function getEventsWithFallback() {
+  try {
+    return await getEvents(); // Versuche live zu laden
+  } catch (error) {
+    console.warn('Live-Daten nicht verfügbar, nutze Fallback...');
+    
+    // Fallback 1: Gecachte lokale Daten nutzen (z.B. aus localStorage)
+    const cached = localStorage.getItem('cached-events');
+    if (cached) {
+      console.log('Nutze gecachte Events');
+      return JSON.parse(cached);
+    }
+    
+    // Fallback 2: Static JSON-Datei (in Repo committed)
+    // data/events-fallback.json mit letzten bekannten Events
+    const response = await fetch('/data/events-fallback.json');
+    return response.json();
+  }
+}
+```
+
+---
+
+## 7. Regelmäßige Updates & Wartung
+
+**Wer aktualisiert die Sheets?**
+
+- **Testphase:** Koordinator:in fügt selbst Beispiel-Events ein
+- **Langfristig:** Organisationen bearbeiten die Sheets-Datei selbst
+
+**Wie oft sollte die Website aktualisieren?**
+
+- **Standard:** Alle 5–10 Minuten (auch wenn User die Seite nicht reload)
+
+---
+
+## 8. Zukünftige Erweiterungen
+
+- [ ] iCalendar Export (.ics) – Users können Events in Kalender subsciben
+- [ ] Event-Bilder/Poster – verlinkt in zusätzlicher Sheets-Spalte
+- [ ] Webhook-Notifications – Email/Push wenn neues Event von Org
+- [ ] Self-service Google Form – Organisationen laden Events selbst
+- [ ] Duplicate-Detection – automatische Erkennung von Dubletten
+- [ ] Event-Archiv – historische Events beibehalten
+
+---
+
+## 9. Links & Referenzen
+
+- [Google Sheets CSV Export](https://support.google.com/docs/answer/183965?hl=de)
+- [Papa Parse (CSV Library)](https://www.papaparse.com/)
+- [Google Sheets API Docs](https://developers.google.com/sheets/api)
+- [Google Apps Script Docs](https://developers.google.com/apps-script)
+- [CSV RFC 4180 Standard](https://tools.ietf.org/html/rfc4180)
