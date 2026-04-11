@@ -13,12 +13,12 @@
 
 ### Responsive (3×)
 22. Mobile (0–767px): 320px Breakpoint | Tablet (768–1199px): 768px Breakpoint | Desktop (1200px+): 1200px Breakpoint ✅ **[ENTSCHIEDEN: Min-Width Strategie]**
-23. Kalender lesbar auf allen Größen ⚠️ **[VAGE: Definition "lesbar" (Contrast? Font-size?)]**
+23. Kalender lesbar auf allen Größen ✅ **[ENTSCHIEDEN: Font 16–17px Body, 18–36px Headlines | Kontrast 4.5:1 WCAG AA | Line-Height 1.5]**
 24. Filter zugänglich auf allen Größen ⚠️ **[ABHÄNGIG VON Q2: Position wird noch festgelegt]**
 
 ### Qualität (4×)
-25. Fallback wenn Google Sheets down ⚠️ **[VAGE: Cache first oder Message first? Priorität?]** (gecachte Daten oder Meldung)
-26. Fehlerhafte Events ⚠️ **[VAGE: Definition "fehlerhaft"? Nur NULL-Felder oder auch ungültige Formate?]** ignorieren, nicht brechen
+25. Fallback wenn Google Sheets down ✅ **[ENTSCHIEDEN: Cache-First Strategie | localStorage speichert letzte erfolgreiche Events | Bei Fehler: gecachte Events nutzen]** (gecachte Daten oder Meldung)
+26. Fehlerhafte Events ✅ **[ENTSCHIEDEN (M1): Validierung Tier 1 nur | SKIP Events: Titel LEER ODER Datum LEER/ungültig ODER Org-Name LEER | Org-Name gegen organizations.json prüfen = später (Q3)]** ignorieren, nicht brechen
 27. Keine Konsolen-Fehler
 28. Graceful degradation bei Datenfehlern
 
@@ -43,34 +43,8 @@ Mehrfachauswahl möglich
 ## OFFENE FRAGEN
 
 **Design & Tech:**
-1. Kalender-Library? (FullCalendar.js vs. Vanilla JS vs. andere)
+1. Kalender-Library? ✅ **[ENTSCHIEDEN: Vanilla JS | Grund: Lernziel, volle Kontrolle, keine Dependencies, perfekt für HTML/CSS-Tutorial]**
 2. Filter-Position? (Sidebar, Dropdown, Modal, Kombination) → **WIRKT SICH AUS auf:** Must 17, Must 23-24
-3. organizations.json Format? (Flach oder nested) → **WIRKT SICH AUS auf:** HTML-Struktur
 
-**Technisch:**
-10. Lokalisation: Deutsch oder mehrsprachig? ✅
-
-**ZUSÄTZLICHE LÜCKEN ERKANNT:**
-- **Bilder/Logos:** Point 44 (Nice) erwähnt "Lazy Loading für Bilder", aber es wird nie definiert, woher Organisations-Logos/Event-Bilder kommen
-  → LÜCKE: Datenstruktur für Bilder fehlt
-- **Event-Statistiken:** User Story "Arbeitgeber" erwähnt, aber nicht in Requirements
-- **"Sofort" vs. "5–10 Min":** User Story vs. Must-Have Widerspruch
-
----
-
-### ⚠️ WIDERSPRÜCHE / LÜCKEN ZUM BEHEBEN
-
-| Problem | Wo | Betroffene Items |
-|---------|-----|---|
-| **WIDERSPRUCH:** "Sofort" vs. "5–10 Min Refresh" | User Story + Must 11 | Klären: Real-time oder 5-10 Min? |
-| **WIDERSPRUCH:** Q8 "Endzeit-default flexibel?" aber Must 2 sagt "+90min" | Offene Fragen | Q8 löschen oder Must 2 ändern |
-| **LÜCKE:** Event-Statistiken erwähnt (User Story) aber nicht definiert | Nice-Have & User Story | Entweder definieren oder aus Story streichen |
-| **LÜCKE:** Organisations-Bilder/Logos nicht definiert | Nice 44 (Lazy Loading) | Woher kommen Bilder? Datenstruktur fehlt |
-| **LÜCKE:** organizations.json wird nicht erwähnt, wie erstellt | Must 4 | Manuell pflegen? Aus Markdown autogeneriert? |
-| **VAGE:** "Lesbar" (Must 23) – keine Definition | Must 23 | Contrast-Anforderung? Font-size? |
-| **VAGE:** "Gekürzt bei Bedarf" (Must 8) – wie kurz? | Must 8 | Max. Zeichenlänge definieren |
-| **VAGE:** "Schnelles" Zurücksetzen (Must 16) | Must 16 | Konkrete Timing angeben? |
-| **VAGE:** "ggf. interaktive Karte" (Nice 36) | Nice 36 | Ja oder nein? Nicht "vielleicht" |
-| **ABHÄNGIG auf Exploration:** Filter-Position nicht klar | Must 17, 23-24 | Wartet auf Phase 2 Design-Decision |
 
 - **Google Sheets:** https://docs.google.com/spreadsheets/d/1nbuUu9C1qppWsV4WnVNlCHLYVb3M8D8tVJ-HIBRyg9s/
