@@ -31,49 +31,68 @@ Min-Width Breakpoints:
 
 
 ## Struktur
-1. Header
-2. Banner
-3. Kalenderansicht
-4. Footer
+
+1. **Header** 
+   - Überschrift "Catholic Crowd Graz" (weiß)
+   - Navigation "Start", "Veranstaltungen", "Über" (Weiß, mit Gold Underline Hover)
+   - Hintergrund: Grün `#b8de97` mit Gold Unterstrich (3px)
+
+2. **Banner** 
+   - Tagline: "Veranstaltungen der katholischen Hochschul- und Jugendorganisationen in Graz"
+   - Weiß mit doppeltem Schatten für Lesbarkeit
+   - Hintergrund-Image mit Parallax-Effekt
+
+3. **Kalenderansicht (Main)**
+   - Monatsname (Weiß mit Gold Unterstrich)
+   - Kalender (Grün Header, weiße Zellen, fixe Spaltenbreiten)
+   - Navigation Buttons (Grün mit Hover-Gold)
+
+4. **Über-Bereich**
+   - Vollbreite Sektion mit 2–3 Sätzen
+   - Text zentriert, Hintergrund mit Overlay
+
+5. **Footer** 
+   - Links: "Impressum", "Kontakt"
+   - Hintergrund: Dunkelgrau
+
 
 ---
 
 ## Kalenderansicht (zentral)
 
 **Grundkonzept (aus requirements.md Must 6–11):**
-- Monatskalender als Startseite
-- Navigation: Vorheriger/Nächster Monat
-- Event-Titel sichtbar (gekürzt bei Bedarf) ⚠️ OFFEN: Zeichenlimit?
+- Monatskalender als Startseite (6-Wochen-Gitter)
+- Navigation: Vorheriger/Nächster Monat (grüne Buttons mit goldenen Hover-States)
+- Event-Titel sichtbar und gekürzt mit "..." bei Platzmangel
 - Click auf Event → Side-Panel mit Volldetails
-- Auto-Refresh alle 5–10 Minuten
+- Auto-Refresh alle 5 Minuten via Google Sheets CSV
+- **Tage-Markierung:**
+  - Heute: Subtiler Gold-Hintergrund (30% Opazität) zur Orientierung
+  - Ausgewählter Tag: Grüner Rahmen (2px) ohne Füllung
+  - Alle Spalten gleichmäßig breit (fixed table-layout)
 
 ## Farben
 
 **Primärfarben:**
-- 🔴 **Primary Red** `#8B3A3A` (Church Red – traditionell, würdevoll, katholisch)
-- 🟨 **Secondary Cream** `#F5DEB3` (Warm & einladend – signalisiert Jugend & Vielfalt)
+- 🟢 **Primary Green** `#b8de97` (Limettes Grün – weich, freundlich, modern)
+- 🟨 **Secondary Gold** `#b8a127` (Dunkles Goldbraun – elegant, warm, natürlich)
 
 **Neutrale Farben:**
-- ⚪ Weiß `#FFFFFF` (Hintergrund)
-- ⬛ Schwarz `#000000` (Text)
+- ⚪ Weiß `#FFFFFF` (Hintergrund, Text)
+- ⬛ Schwarz `#000000` (nicht verwendet)
 - 🩶 Dunkelgrau `#333333` (Text Secondary)
 - 🩶 Hellgrau `#EEEEEE` (Borders, subtle backgrounds)
 
 **Verwendung:**
-- Header/Navigation: Primary Red `#8B3A3A`
-- Buttons (CTA): Secondary Cream `#F5DEB3`
-- Hover-States: Mischung aus Rot + Cream
-- Events im Kalender: Alle Organisationen nutzen diese 2 Farben (kein individual color-coding)
-  - z.B. Event-Boxes alternieren oder nutzen Rot als Akzent
+- **Header:** Pastelgrün `#b8de97` (Hintergrund)
+- **Header-Titel "Catholic Crowd Graz":** Gold `#b8a127`
+- **Header-Unterstrich:** Gold `#b8a127` (3px)
+- **Navigation (Start, Veranstaltungen, Über):** Weiß
+- **Buttons (Vorheriger/Nächster Monat):** Grün `#b8de97` (Hintergrund), Weiß Text; Hover → Gold `#b8a127`
+- **Wochentage (Mo, Di, Mi...):** Grün `#b8de97` (Hintergrund), Weiß Text
+- **Monatsname:** Weiß mit Schatten, Gold `#b8a127` Unterstrich
+- **Heute-Markierung:** Gold `#b8a127` Hintergrund (30% Opazität)
+- **Ausgewählter Tag:** Grün `#b8de97` Rahmen (2px, ohne Füllung)
+- **Events im Kalender:** Text in dunkelgrau auf weißem Hintergrund
 
 
----
-
-## Offene Designfragen (Phase 2)
-
-| Frage | Relevanz |
-|-------|----------|
-| Filter-Position (Sidebar/Dropdown/Modal)? | ⚠️ Beeinflusst Layout |
-| Organisations-Bilder/Logos Quelle? | ⚠️ Datenstruktur |
-
----
