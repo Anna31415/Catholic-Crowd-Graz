@@ -325,6 +325,7 @@ main {
   padding: var(--spacing-base);
   overflow-y: auto;
   animation: slideInRight 0.3s ease;
+  display: none;
 }
 
 @keyframes slideInRight {
