@@ -4,8 +4,8 @@
 
 :root {
   /* Farben */
-  --primary-red: #b8de97;
-  --secondary-cream: #b8a127;
+  --primary-green: #b8de97;
+  --secondary-gold: #b8a127;
   --dark-gray: #333333;
   --light-gray: #EEEEEE;
   --white: #FFFFFF;
@@ -50,7 +50,7 @@ body {
   background-color: var(--white);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto auto;
   min-height: 100vh;
 }
 
@@ -84,7 +84,7 @@ h2 { font-size: var(--font-size-h2); }
 h3 { font-size: var(--font-size-h3); }
 
 a {
-  color: var(--primary-red);
+  color: var(--primary-green);
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -101,27 +101,26 @@ button {
 /* Header */
 
 header {
-  background-color: var(--primary-red);
+  background-color: var(--primary-green);
   padding: var(--spacing-base);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--spacing-base);
   flex-wrap: wrap;
-  border-bottom: 3px solid var(--secondary-cream);
+  border-bottom: 3px solid var(--secondary-gold);
 }
 
 header h1 {
   color: var(--white);
-  margin-bottom: 0;
   flex: 1;
+  margin-bottom: 0;
   min-width: 200px;
   text-shadow: var(--text-shadow-subtle);
 }
 
 header nav {
   display: flex;
-  gap: var(--spacing-double);
+  gap: var(--spacing-double)
 }
 
 header nav a {
@@ -135,7 +134,7 @@ header nav a {
 
 header nav a:hover {
   opacity: 1;
-  border-bottom-color: var(--secondary-cream);
+  border-bottom-color: var(--secondary-gold);
 }
 
 @media (max-width: 767px) {
@@ -157,7 +156,7 @@ header nav a:hover {
 /* Banner */
 
 .banner {
-  background-color: var(--secondary-cream);
+  background-color: var(--secondary-gold);
   background-image: url('../images/pexels-usidz-36551806.jpg');
   background-size: cover;
   background-position: center;
@@ -170,8 +169,8 @@ header nav a:hover {
   font-size: 1.8rem;
   font-weight: 500;
   max-width: 800px;
-  margin: 0 auto;
   line-height: 1.6;
+  margin: 0 auto;
   color: var(--white);
   text-shadow: var(--text-shadow-strong);
 }
@@ -208,20 +207,18 @@ main {
   background-position: center;
   background-attachment: fixed;
   background-color: #fafafa;
-  position: relative;
 }
 
 #calendar-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--spacing-base);
   margin-bottom: var(--spacing-large);
   flex-wrap: wrap;
 }
 
 #calendar-controls button {
-  background-color: var(--primary-red);
+  background-color: var(--primary-green);
   color: var(--white);
   padding: var(--spacing-half) var(--spacing-base);
   border: none;
@@ -231,7 +228,7 @@ main {
 }
 
 #calendar-controls button:hover {
-  background-color: var(--secondary-cream);
+  background-color: var(--secondary-gold);
   color: var(--dark-gray);
 }
 
@@ -239,13 +236,12 @@ main {
   margin: 0;
   color: var(--white);
   text-shadow: var(--text-shadow-strong);
-  border-bottom: 2px solid var(--secondary-cream);
+  border-bottom: 2px solid var(--secondary-gold);
   padding-bottom: var(--spacing-half);
 }
 
 #calendar {
-  background-color: var(--white);
-  border: 1px solid var(--light-gray);
+  background-color: var(--white);;
   border-radius: 4px;
   overflow-x: auto;
 }
@@ -264,7 +260,7 @@ main {
 }
 
 #calendar th {
-  background-color: var(--primary-red);
+  background-color: var(--primary-green);
   color: var(--white);
   font-weight: 700;
   padding: var(--spacing-base);
@@ -287,8 +283,7 @@ main {
 }
 
 #calendar td.selected {
-  background-color: transparent;
-  border: 2px solid var(--primary-red);
+  border: 2px solid var(--primary-green);
 }
 
 #calendar td.other-month {
@@ -332,13 +327,16 @@ main {
 }
 
 #event-panel #close-panel {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  float: right;
-  margin-bottom: var(--spacing-base);
-  color: var(--primary-red);
+  background: none;         
+  border: none;             
+  font-size: 1.5rem;        
+  cursor: pointer;          
+  float: right;             
+  color: var(--primary-green);  
+  font-size: 1.5rem;        
+  cursor: pointer;         
+  float: right;             
+  color: var(--primary-green); 
 }
 
 #event-panel #close-panel:hover {
@@ -351,7 +349,7 @@ main {
 }
 
 #event-details h3 {
-  color: var(--primary-red);
+  color: var(--primary-green);
   margin-bottom: var(--spacing-half);
 }
 
@@ -366,51 +364,7 @@ main {
   }
 }
 
-/* Footer */
-
-footer {
-  background-color: var(--dark-gray);
-  padding: var(--spacing-large) var(--spacing-double);
-  text-align: center;
-  margin-top: auto;
-}
-
-footer p {
-  margin-bottom: var(--spacing-base);
-  font-size: 0.9rem;
-}
-
-footer nav {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-double);
-  margin-top: var(--spacing-base);
-}
-
-footer a {
-  color: var(--secondary-cream);
-  font-weight: 600;
-  transition: border-bottom-color 0.2s ease;
-  border-bottom: 2px solid transparent;
-}
-
-footer a:hover {
-  opacity: 1;
-  border-bottom-color: var(--secondary-cream);
-}
-
-@media (max-width: 767px) {
-  footer {
-    padding: var(--spacing-base);
-  }
-
-  footer nav {
-    flex-direction: column;
-    gap: var(--spacing-base);
-  }
-}
-
-/* About */
+ /* About */
 
 .about {
   padding: var(--spacing-large);
@@ -435,12 +389,11 @@ footer a:hover {
 }
 
 .about h2 {
-  color: var(--primary-red);
+  color: var(--primary-green);
   margin-bottom: var(--spacing-base);
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 45%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -466,3 +419,38 @@ footer a:hover {
     padding: 4rem var(--spacing-double);
   }
 }
+ 
+
+/* Footer */
+
+footer {
+  background-color: var(--dark-gray);
+  padding: var(--spacing-base);
+  text-align: center;
+}
+
+footer p {
+  color: var(--secondary-gold);
+  margin-bottom: var(--spacing-base);
+  font-size: 0.9rem;
+}
+
+footer nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-double);
+}
+
+footer a {
+  color: var(--secondary-gold);
+  font-weight: 600;
+  transition: border-bottom-color 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+footer a:hover {
+  opacity: 1;
+  border-bottom-color: var(--secondary-gold);
+}
+
+
