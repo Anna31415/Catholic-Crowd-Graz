@@ -332,10 +332,6 @@ main {
   font-size: 1.5rem;        
   cursor: pointer;          
   float: right;             
-  color: var(--primary-green);  
-  font-size: 1.5rem;        
-  cursor: pointer;         
-  float: right;             
   color: var(--primary-green); 
 }
 
@@ -356,12 +352,6 @@ main {
 #event-details p {
   margin-bottom: var(--spacing-base);
   font-size: 0.95rem;
-}
-
-@media (max-width: 767px) {
-  #event-panel {
-    max-width: 100%;
-  }
 }
 
  /* About */
