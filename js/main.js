@@ -10,6 +10,7 @@ const CACHE_EXPIRY_KEY = 'ccg_cache_expiry';
 const CACHE_DURATION = 5 * 60 * 1000; // 5 Minuten
 
 let events = [];
+let filteredEvents = [];
 let currentDate = new Date();
 let selectedDate = null;
 
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadEvents();
   renderCalendar();
   setupEventListeners();
+  setupSearchListeners();
 });
 
 // ========================================
@@ -34,6 +36,7 @@ async function loadEvents() {
     
     const csvText = await response.text();
     events = parseCSV(csvText);
+    filteredEvents = [...events];
     
     // Cache speichern
     localStorage.setItem(CACHE_KEY, JSON.stringify(events));
@@ -50,17 +53,18 @@ function loadFromCache() {
   const cached = localStorage.getItem(CACHE_KEY);
   if (cached) {
     events = JSON.parse(cached);
+    filteredEvents = [...events];
     console.log(`⚠️ Cache genutzt: ${events.length} Events`);
   } else {
     console.log('❌ Keine Cache vorhanden');
     events = [];
+    filteredEvents = [];
   }
 }
 
 // ========================================
 // 2. CSV PARSING
 // ========================================
-
 function parseCSV(csvText) {
   const lines = csvText.trim().split('\n');
   if (lines.length < 2) return [];
@@ -164,7 +168,7 @@ function renderCalendar() {
 }
 
 function getEventsForDate(dateStr) {
-  return events.filter(e => e.date === dateStr);
+  return filteredEvents.filter(e => e.date === dateStr);
 }
 
 // ========================================

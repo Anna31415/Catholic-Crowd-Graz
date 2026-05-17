@@ -27,8 +27,19 @@
             <h2 id="month-title">April 2026</h2>
             <button id="next-month">Nächster Monat →</button>
         </div>
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Nach Event suchen...">
+            <button id="search-button">Suchen</button>
+            <button id="clear-search">Suche zurücksetzen</button>
+        </div>
         <div id="calendar"></div>
     </main>
+
+    <aside id="search-panel">
+        <button id="close-search-panel">✕</button>
+        <div id="search-panel-title">Suchergebnisse</div>
+        <div id="search-panel-results"></div>
+    </aside>
 
     <section id="about" class="about">
         <h2>Über diese Plattform</h2>
@@ -53,5 +64,6 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
 </body>
 </html>
