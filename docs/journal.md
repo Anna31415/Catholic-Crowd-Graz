@@ -1,9 +1,9 @@
 # Arbeitsprotokoll – Catholic Crowd Graz
 
-## Phase 1: Datensammlung (Grundlagen)
+## Datensammlung (Grundlagen)
 
 **09.04.2026 – Projekt-Setup & Methodologie**
-- Promptotyping-Artikel analysiert (Christopher Pollin)
+- Promptotyping-Artikel analysiert
 - 4-Phase-Struktur übernommen: Preparation → Exploration → Distillation → Implementation
 - Projektumfang geklärt: Event-Plattform für katholische Organisationen in Graz
 
@@ -20,23 +20,6 @@
 - Datei wieder verworfen. Spätere eventuelle Einführung eines Gruppen-Bereichs möglich.
 ---
 
-## Phase 3: Distillation (Anforderungen)
-
-**09.04.2026 – Requirements dokumentiert**
-- 32 MUST-HAVE Requirements definiert (8 Kategorien)
-- 12 NICE-TO-HAVE Features aufgelistet
-- 10+ Offene Fragen für Phase 2 Exploration
-- 3 User Stories: Student-Entdeckung, Org-Promotion, Employer-Recruiting
-- Problem: Erste Fassung zu lang (~800 Zeilen), viele Redundanzen
-
-**09.04.2026 – Requirements komprimiert**
-- Dokumentation um 60% gekürzt (~800 → ~400 Zeilen)
-
-**09.04.2026 – Konsistenz-Check durchgeführt**
-- vague Formulierungen markiert (z.B. "lesbar" undefined, "gekürzt" ohne Zeichenlimit)
-- Widersprüche gefunden: "sofort" vs. "5–10 Min Refresh", "Endzeit-default" redundant, "Suchfunktion" doppelt
-
----
 
 ## Visual Design (Ästhetik & Typing)
 
@@ -80,40 +63,10 @@
 - Ranges-Interpretation verworfen (zu umständlich)
 - Requirements aktualisiert, Widersprüche-Tabelle bereinigt
 
----
 
-## Status Übersicht
 
-**ABGESCHLOSSEN ✅**
-- Phase 1 (Datensammlung): Sheets Integration + 5 Organisationen
-- Phase 3 (Distillation): 32 MUST + 12 NICE Requirements + Konsistenz-Check
-- Visual Design: Farben + Typography + Responsive Framework
-- Legal Foundation: Impressum HTML
-
-**OFFEN ⏳**
-- Phase 2 (Exploration): Kalender-Library (FullCalendar vs. Vanilla), Filter-Position, organizations.json Format
-- Phase 4 (Implementation): HTML/CSS/JS Code generieren
-- Vague Items lösen (10 noch ausstehend)
-- Git Commits (Phase 1, Phase 3, Phase 4.1–4.5)
-
-**VERWORFEN ❌**
-- Google Sheets API-Key Approach (zu komplex)
-- Google Apps Script Webhooks (overkill)
-- Elegant Typography (Lora)
-- Ranges-basierte Breakpoints (Min-Width einfacher)
-- Organisations-individuelle Farben (zu viele Farben → 2-Farben-System statt)
-
----
-
-## Lessons Learned
-
-- **Dokumentation vorher = weniger Refactoring nachher:** Konsistenz-Check in Phase 3 hat 12 potenzielle Implementierungs-Probleme früh erkannt
-- **CSV Export >> API für Public Data:** Einfacher, keine Auth, keine Rate Limits, besser für Studentenprojekt
-- **Design-Decisions müssen Beginns klar sein:** Farben + Typography früh zu fixieren hilft CSS-Generierung später
-
----
-
-## Phase 4: Implementation (Vanilla JavaScript MVP)
+## HTML CSS und JavaSript
+Implementation (Vanilla JavaScript MVP)
 
 **12.04.2026 – HTML-Struktur erstellt (index.html)**
 - Semantische Struktur: Header (Nav) → Banner → Calendar → About → Footer
@@ -156,6 +109,8 @@
    - Root Cause: `renderCalendar()` aufgerufen, bevor `loadEvents()` fertig war
    - Fix: Async/await in DOMContentLoaded Event Listener (`await loadEvents()`)
    - ✅ Resolved
+   
+## Design & Color Refinements
 
 **12.04.2026 – Design & Color Refinements (mehrere Iterationen)**
 
@@ -196,17 +151,7 @@
 - Result: 2-Farben-System konsistent, modern, warm
 
 
-## Lessons Learned (Updated)
-
-- **Farben sind subjektiv:** 7+ Iterationen bis zum "richtigen" Grün/Gold – visuelle Entscheidungen iterativ treffen
-- **Async/Await critical in modernem JavaScript:** Eine fehlende `await` verursacht schwierig zu findende Timing-Bugs
-- **CSS `table-layout: fixed` löst viele Layout-Probleme:** Responsive Tabellen consistent halten
-- **Vanilla JS Kalender machbar:** ~300 Zeilen ohne Libraries, verstehen des Codes essentiell für schnelle Anpassungen
-- **Dokumentation (visual-design.md) muss mit Code synchron sein:** Post-hoc Doku ist schneller als pre-hoc, solange Consistency-Checks erfolgen
-
----
-
-## Phase 4.5: Code Optimization & Documentation
+## Code Optimization & Documentation
 
 **13.04.2026 – Code Cleanup Pass 1 durchgeführt**
 - Entfernt: 7 HTML-Kommentare aus `index.html` (unnötig für Produktionscode)
@@ -233,6 +178,7 @@
 - **Finale CSS-Größe:** ~460 Zeilen (von ursprünglich ~610 = 25–30% Reduktion)
 - ✅ Status: Third optimization pass complete, Code bleibt zu 100% funktionsfähig
 
+## Tutorials erstellt
 **13.04.2026 – Comprehensive Tutorial erstellt (3,500+ Zeilen)**
 - Format: Markdown (`/tutorial/TUTORIAL.md`)
 - Struktur: 11 Hauptkapitel mit 60+ Subsektionen
@@ -259,6 +205,8 @@
 - User Decision: Keep current format + create PDF/HTML with graphics (separate version)
 - ✅ Status: Quality assessment complete, improvement suggestions noted
 
+## Bug gefixt
+
 **13.04.2026 – Event-Panel Bug identifiziert & gefixt**
 - Problem: Side-Panel beim Laden der Website direkt offen
 - Root Cause: CSS fehlte `display: none;` → Panel war standardmäßig sichtbar
@@ -268,6 +216,7 @@
 - Tutorial aktualisiert: 7.1 Sektion erklärt jetzt warum `display: none;` kritisch ist
 - ✅ Status: Bug fixed, tutorial updated
 
+## Readme erstellt
 **13.04.2026 – README.md für GitHub erstellt**
 - Inhalt:
   - Projekt-Name & Beschreibung (Was ist die Seite?)
@@ -281,25 +230,61 @@
 - Platzhalter: GitHub-Username & Live-Website URL (noch auszufüllen)
 - ✅ Status: GitHub-ready README complete
 
-**13.04.2026 – Status: Phase 4 gesamt ABGESCHLOSSEN ✅**
-- ✅ Code optimized (460 Zeilen, 25–30% Reduktion)
-- ✅ Tutorial comprehensive (3,500 Zeilen)
-- ✅ Bug-fixes (Event-Panel display: none)
-- ✅ README.md (GitHub-ready)
 
 
----
+## Suchfunktion Implementation
 
-## Summary Status (13.04.2026)
+**Mai 2026 – Search-Funktion vollständig implementiert**
 
-| Bestandteil | Status | Details |
-|-----------|--------|---------|
-| HTML | ✅ Complete | 70 Zeilen, 7 semantische Elemente |
-| CSS | ✅ Optimized | 460 Zeilen, responsive, 2-Farben-System |
-| JavaScript | ✅ Working | 300+ Zeilen, Error-Handling, CSV-Loading |
-| Bugs | ✅ Fixed | Timezone, Async, Layout, Panel-Display |
-| Design | ✅ Finalized | Grün `#b8de97`, Gold `#b8a127` |
-| Tutorial | ✅ Complete | 3,500 Zeilen, 11 Kapitel |
-| README | ✅ Complete | GitHub-ready mit Setup-Anleitung |
-| Git Commits | ⏳ Pending | Ready after final tests |
-| Graphics PDF | ⏳ Optional | Awaiting user approval |
+**HTML-Erweiterung (index.html)**
+- `#search-container` hinzugefügt:
+  - Input-Feld: `#search-input` mit Placeholder "Nach Event suchen..."
+  - Suchen-Button: `#search-button`
+  - Suche zurücksetzen-Button: `#clear-search`
+- `#search-panel` hinzugefügt:
+  - Close-Button: `#close-search-panel` (✕)
+  - Titel: `#search-panel-title` ("Suchergebnisse")
+  - Results-Container: `#search-panel-results`
+
+**JavaScript Search Engine (js/search.js – neue Datei)**
+- `filterEventsBySearch(searchText)` Funktion:
+  - Case-insensitive Suche in Titel + Organisation + Beschreibung
+  - Ergebnisse sortiert nach Datum (aufsteigend)
+  - Leere Suche zeigt "Keine Events gefunden"
+  - Search-Panel öffnet/schließt dynamisch
+- `renderEventItem(event)` Hilfsfunktion:
+  - Formatiert Event-Details mit Icons (📅, 🕐, 📍, 📝)
+  - Datum formatiert mit `toLocaleDateString('de-AT')`
+  - Konditionale Anzeige: Beschreibung nur falls vorhanden, Endzeit optional
+- Event-Listener Setup:
+  - Enter-Taste im Suchfeld triggert Suche
+  - Klick auf "Suchen"-Button triggert Suche
+  - "Suche zurücksetzen"-Button leert Input + setzt filteredEvents zurück
+  - Close-Button schließt Search-Panel
+- Integriert mit main.js: `filterEventsBySearch()` ruft `renderCalendar()` auf
+
+**CSS Search-Styling (css/style.css – erweitert)**
+- `#search-container`: Flex-Layout mit Gap
+- `#search-input`: 
+  - Border Focus-State: Primary Green
+  - Box-Shadow bei Focus
+  - Flex: 1 für responsive Width
+- `#search-button` & `#clear-search`: 
+  - Button-Styling (Grün/Gold)
+  - Hover-Effects
+- `#search-panel`:
+  - Display: none (hidden by default)
+  - Wird von search.js ein-/ausgeblendet
+  - Result-Items mit Meta-Daten (Icons, Datum, Zeit, Ort)
+- Mobile Responsive:
+  - `#search-container`: Flex-Direction Column bei 767px
+  - `#search-input`: Width: 100%
+
+**Integration & Testing**
+- Search funktioniert unabhängig von Kalender-Navigation
+- Suche filtert Kalender-Ansicht nicht (nur Search-Panel angezeigt)
+- Bei Clear: Alle Events wieder im Kalender sichtbar
+- ✅ Status: Search-Funktion fully functional
+
+
+## Last steps: Optimizaton for Submission

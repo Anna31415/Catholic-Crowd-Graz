@@ -313,8 +313,8 @@ h1 {
 
 ```css
 :root {
-  --primary-red: #b8de97;
-  --secondary-cream: #b8a127;
+  --primary-green: #b8de97;
+  --secondary-gold: #b8a127;
   --dark-gray: #333333;
   --light-gray: #EEEEEE;
   --white: #FFFFFF;
@@ -349,18 +349,18 @@ h1 { color: #b8de97; }
 
 **MIT Variablen:**
 ```css
-header { background-color: var(--primary-red); }
-button { background-color: var(--primary-red); }
-h1 { color: var(--primary-red); }
-/* Nur 1x die Variable ändern: `:root { --primary-red: #new-color; }` 👍 */
+header { background-color: var(--primary-green); }
+button { background-color: var(--primary-green); }
+h1 { color: var(--primary-green); }
+/* Nur 1x die Variable ändern: `:root { --primary-green: #new-color; }` 👍 */
 ```
 
 #### 📋 Bedeutung der Variablen:
 
 | Variable | Wert | Wozu? |
 |----------|------|-------|
-| `--primary-red` | `#b8de97` | Hauptfarbe (grüne Buttons, Icons) |
-| `--secondary-cream` | `#b8a127` | Sekundärfarbe (Gold accents) |
+| `--primary-green` | `#b8de97` | Hauptfarbe (grüne Buttons, Icons) |
+| `--secondary-gold` | `#b8a127` | Sekundärfarbe (Gold accents) |
 | `--dark-gray` | `#333333` | Dunkler Text, Footer |
 | `--spacing-base` | `1rem` | Basis-Abstand (16px auf Handy) |
 | `--spacing-large` | `3rem` | Großer Abstand (Padding) |
@@ -464,7 +464,7 @@ h2 { font-size: var(--font-size-h2); }
 h3 { font-size: var(--font-size-h3); }
 
 a {
-  color: var(--primary-red);            /* Grün */
+  color: var(--primary-green);            /* Grün */
   text-decoration: none;                /* Keine Unterstriche */
   transition: opacity 0.2s ease;        /* Smooth fade effect */
 }
@@ -487,14 +487,14 @@ button {
 
 ```css
 header {
-  background-color: var(--primary-red);   /* Grüner Hintergrund */
+  background-color: var(--primary-green);   /* Grüner Hintergrund */
   padding: var(--spacing-base);           /* 1rem = 16px Innenabstand */
   display: flex;                          /* Flexbox-Layout */
   justify-content: space-between;         /* Logo links, Nav rechts */
   align-items: center;                    /* Vertikal zentriert */
   gap: var(--spacing-base);               /* 1rem Abstand zwischen Items */
   flex-wrap: wrap;                        /* Auf Handy: umfließen */
-  border-bottom: 3px solid var(--secondary-cream);  /* Goldene Trennlinie */
+  border-bottom: 3px solid var(--secondary-gold);  /* Goldene Trennlinie */
 }
 ```
 
@@ -555,7 +555,7 @@ header nav a {
 
 header nav a:hover {
   opacity: 1;              /* Full opacity */
-  border-bottom-color: var(--secondary-cream);  /* Gold-Linie erscheint */
+  border-bottom-color: var(--secondary-gold);  /* Gold-Linie erscheint */
 }
 ```
 
@@ -605,7 +605,7 @@ Desktop (≥ 768px):          Mobile (< 768px):
 
 ```css
 .banner {
-  background-color: var(--secondary-cream);        /* Gold Fallback */
+  background-color: var(--secondary-gold);        /* Gold Fallback */
   background-image: url('../images/pexels-usidz-36551806.jpg');  /* Großes Foto */
   background-size: cover;                          /* Fülle den Container */
   background-position: center;                     /* Zentriert */
@@ -726,7 +726,7 @@ main {
 }
 
 #calendar-controls button {
-  background-color: var(--primary-red);   /* Grün */
+  background-color: var(--primary-green);   /* Grün */
   color: var(--white);
   padding: var(--spacing-half) var(--spacing-base);
   border: none;                           /* Kein Border */
@@ -736,7 +736,7 @@ main {
 }
 
 #calendar-controls button:hover {
-  background-color: var(--secondary-cream);  /* Gold beim Hover */
+  background-color: var(--secondary-gold);  /* Gold beim Hover */
   color: var(--dark-gray);                /* Dunkelgrauer Text */
 }
 ```
@@ -758,7 +758,7 @@ Flexbox mit space-between: Knöpfe außen, Titel Mitte
   margin: 0;                                    /* Kein Standard-Margin */
   color: var(--white);                          /* Weißer Text */
   text-shadow: var(--text-shadow-strong);       /* Schatten */
-  border-bottom: 2px solid var(--secondary-cream);  /* Gold-Line */
+  border-bottom: 2px solid var(--secondary-gold);  /* Gold-Line */
   padding-bottom: var(--spacing-half);          /* Abstand zur Line */
 }
 ```
@@ -803,7 +803,7 @@ table-layout: fixed:
 }
 
 #calendar th {
-  background-color: var(--primary-red); /* Grüner Header */
+  background-color: var(--primary-green); /* Grüner Header */
   color: var(--white);
   font-weight: 700;                     /* Fett */
   padding: var(--spacing-base);         /* Mehr Abstand */
@@ -831,7 +831,7 @@ table-layout: fixed:
 
 #calendar td.selected {
   background-color: transparent;        /* Durchsichtig */
-  border: 2px solid var(--primary-red);  /* Dicker grüner Border */
+  border: 2px solid var(--primary-green);  /* Dicker grüner Border */
 }
 
 #calendar td.other-month {
@@ -957,7 +957,7 @@ Panel: 100% rechts      Panel: 50% rechts       Panel: 0 (normal)
   cursor: pointer;
   float: right;                      /* Rechts oben */
   margin-bottom: var(--spacing-base);  /* Abstand zur Content */
-  color: var(--primary-red);         /* Grün */
+  color: var(--primary-green);         /* Grün */
 }
 
 #event-panel #close-panel:hover {
@@ -1043,7 +1043,7 @@ footer nav {
 }
 
 footer a {
-  color: var(--secondary-cream);        /* Gold */
+  color: var(--secondary-gold);        /* Gold */
   font-weight: 600;
   transition: border-bottom-color 0.2s ease;  /* Smooth */
   border-bottom: 2px solid transparent;  /* Unsichtbar */
@@ -1051,7 +1051,7 @@ footer a {
 
 footer a:hover {
   opacity: 1;
-  border-bottom-color: var(--secondary-cream);  /* Gold-Line */
+  border-bottom-color: var(--secondary-gold);  /* Gold-Line */
 }
 ```
 
