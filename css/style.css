@@ -112,7 +112,7 @@ header {
 }
 
 header h1 {
-  color: var(--white);
+  color: var(--black);
   flex: 1;
   margin-bottom: 0;
   min-width: 200px;
