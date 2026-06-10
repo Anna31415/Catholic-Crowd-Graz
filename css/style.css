@@ -173,6 +173,8 @@ header nav a:hover {
   margin: 0 auto;
   color: var(--white);
   text-shadow: var(--text-shadow-strong);
+  paint-order: stroke fill;
+  -webkit-text-stroke: 3px var(--dark-gray);
   letter-spacing: 0.5px;
 }
 
@@ -376,6 +378,8 @@ main {
   margin: 0;
   color: var(--white);
   text-shadow: var(--text-shadow-strong);
+  paint-order: stroke fill;
+  -webkit-text-stroke: 3px var(--dark-gray);
   border-bottom: 2px solid var(--secondary-gold);
   padding-bottom: var(--spacing-half);
 }
