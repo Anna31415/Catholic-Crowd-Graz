@@ -150,13 +150,13 @@ function renderCalendar() {
     dayEvents.slice(0, 2).forEach(event => {
       // Dynamische Länge basierend auf verfügbarer Breite
       // Auf mobil: verfügbare Breite / 7 Spalten → kürzere Namen
-      // Desktop: Keine Kürzung oder sehr lang
+
       const isMobile = window.innerWidth <= 767;
-      let maxLength = 999; // Desktop: praktisch keine Kürzung
+      let maxLength = 20; // Standard max Länge für Desktop
       
       if (isMobile) {
         // Verfügbare Breite pro Spalte ca. 40-50px auf mobil → ~6 Zeichen
-        maxLength = 6;
+        maxLength = 999999;
       }
       
       const title = event.title.length > maxLength ? event.title.slice(0, maxLength - 2) + '..' : event.title;
@@ -181,7 +181,9 @@ function renderCalendar() {
 }
 
 function getEventsForDate(dateStr) {
-  return filteredEvents.filter(e => e.date === dateStr);
+  return filteredEvents
+  .filter(e => e.date === dateStr)
+  .sort((a, b) => a.startTime.localeCompare(b.startTime));
 }
 
 // ========================================
@@ -226,7 +228,8 @@ function openEventPanel(dateStr) {
         <p><strong>📍Ort:</strong> ${e.location || 'TBA'}</p>
         ${e.description ? `<p><strong>Beschreibung:</strong><br>${e.description}</p>` : ''}
       </div>
-    `).join('')}
+    `)
+    .join('')}
   `;
   
   panel.style.display = 'block';
