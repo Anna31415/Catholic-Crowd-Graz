@@ -288,3 +288,8 @@ Implementation (Vanilla JavaScript MVP)
 
 
 ## Last steps: Optimizaton for Submission
+5.6.: html mit W3C Validator geprüft -> <p> zu <h2> geändert in <section id="banner">
+9.6. Am Design gearbeitet: Überschrift "Veranstaltungen..." größer gemacht
+Kalender-Design herumprobiert
+Buttons für mobile neu angeordnet
+10.6. Event-Panel an Search-Panel angepasst (ansprechenderes Design)

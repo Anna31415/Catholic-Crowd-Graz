@@ -146,7 +146,18 @@ function renderCalendar() {
       <div class="events">`;
     
     dayEvents.slice(0, 2).forEach(event => {
-      const title = event.title.length > 15 ? event.title.slice(0, 12) + '...' : event.title;
+      // Dynamische Länge basierend auf verfügbarer Breite
+      // Auf mobil: verfügbare Breite / 7 Spalten → kürzere Namen
+      // Desktop: Keine Kürzung oder sehr lang
+      const isMobile = window.innerWidth <= 767;
+      let maxLength = 999; // Desktop: praktisch keine Kürzung
+      
+      if (isMobile) {
+        // Verfügbare Breite pro Spalte ca. 40-50px auf mobil → ~6 Zeichen
+        maxLength = 6;
+      }
+      
+      const title = event.title.length > maxLength ? event.title.slice(0, maxLength - 2) + '..' : event.title;
       html += `<div class="event-item">${title}</div>`;
     });
     
@@ -209,9 +220,9 @@ function openEventPanel(dateStr) {
       <div class="event-detail">
         <h4>${e.title}</h4>
         <p><strong>Organisation:</strong> ${e.organization}</p>
-        <p><strong>Zeit:</strong> ${e.startTime}${e.endTime ? ' – ' + e.endTime : ''}</p>
-        <p><strong>Ort:</strong> ${e.location || 'TBA'}</p>
-        ${e.description ? `<p><strong>Beschreibung:</strong><br>${e.description}</p>` : ''}
+        <p><strong>🕐</strong> ${e.startTime}${e.endTime ? ' – ' + e.endTime : ''}</p>
+        <p><strong>📍Ort:</strong> ${e.location || 'TBA'}</p>
+        ${e.description ? `<p><strong>📝 Beschreibung:</strong><br>${e.description}</p>` : ''}
       </div>
     `).join('')}
   `;
