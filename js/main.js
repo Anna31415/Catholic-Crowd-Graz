@@ -140,13 +140,11 @@ function renderCalendar() {
     if (dateStr === today) classNames.push('today');
     if (dateStr === selectedDate) classNames.push('selected');
     
+ const className = classNames.join(' ');
+    html += `<td class="${className}" onclick="openEventPanel('${dateStr}')">
+      <strong>${currentCell.getDate()}</strong>
+      <div class="events">`;
 
-    const className = classNames.join(' ');
-    html += `<td class="${className}">
-      <button type="button" onclick="openEventPanel('${dateStr}')">
-        <strong>${currentCell.getDate()}</strong>
-        <div class="events"></div>
-        </button>`;
 
     
     dayEvents.slice(0, 2).forEach(event => {
@@ -226,7 +224,7 @@ function openEventPanel(dateStr) {
         <p><strong>Organisation:</strong> ${e.organization}</p>
         <p><strong>🕐</strong> ${e.startTime}${e.endTime ? ' – ' + e.endTime : ''}</p>
         <p><strong>📍Ort:</strong> ${e.location || 'TBA'}</p>
-        ${e.description ? `<p><strong>📝Beschreibung:</strong><br>${e.description}</p>` : ''}
+        ${e.description ? `<p><strong>Beschreibung:</strong><br>${e.description}</p>` : ''}
       </div>
     `).join('')}
   `;

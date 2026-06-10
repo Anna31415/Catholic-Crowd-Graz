@@ -16,8 +16,8 @@
 
   /* Größen (Mobile-first) */
   --font-size-body: 16px;
-  --font-size-h1: 1.5rem;
-  --font-size-h2: 1.25rem;
+  --font-size-h1: 3rem;
+  --font-size-h2: 2rem;
   --font-size-h3: 1.1rem;
 
   /* Spacing */
@@ -237,6 +237,7 @@ main {
 }
 
 #calendar-controls button {
+  font-size: 1rem;
   background-color: var(--primary-green);
   color: var(--white);
   padding: var(--spacing-half) var(--spacing-base);
@@ -264,6 +265,14 @@ main {
 
   #calendar-controls button {
     flex: 1;
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  #calendar-controls button {
+    font-size: 1rem;
+    padding: var(--spacing-base) var(--spacing-double);
   }
 }
 
@@ -276,6 +285,25 @@ main {
   flex-wrap: wrap;
 }
 
+#search-container button {
+  font-size: 1.5rem;
+}
+
+#search-container input {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 1200px) {
+  #search-container button {
+    font-size: 1.2rem;
+    padding: var(--spacing-base) var(--spacing-double);
+  }
+
+  #search-container input {
+    font-size: 1.2rem;
+    padding: var(--spacing-base) var(--spacing-double);
+  }
+}
 #search-input {
   flex: 1;
   min-width: 200px;
@@ -344,6 +372,7 @@ main {
 }
 
 #month-title {
+  font-size: 2.5rem;
   margin: 0;
   color: var(--white);
   text-shadow: var(--text-shadow-strong);
@@ -471,7 +500,7 @@ main {
   padding: var(--spacing-base);
   border-radius: 4px;
   transition: box-shadow 0.2s ease;
-  margin: var(--spacing-base) 0;
+  margin: var(--spacing-base)
 } 
 
 .event-detail:hover {
