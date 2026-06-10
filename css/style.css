@@ -4,11 +4,12 @@
 
 :root {
   /* Farben */
-  --primary-green: #66A82C;
+  --primary-green: #D7FFB4;
   --secondary-gold: #b8a127;
   --dark-gray: #333333;
   --light-gray: #EEEEEE;
   --white: #FFFFFF;
+
 
   /* Fonts */
   --font-headline: 'Roboto', sans-serif;
@@ -116,6 +117,8 @@ header h1 {
   margin-bottom: 0;
   min-width: 200px;
   text-shadow: var(--text-shadow-subtle);
+   paint-order: stroke fill;
+  -webkit-text-stroke: 3px var(--dark-gray);
 }
 
 header nav {
