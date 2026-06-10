@@ -4,8 +4,8 @@
 
 :root {
   /* Farben */
-  --primary-green: #D7FFB4;
-  --secondary-gold: #b8a127;
+  --primary-green: #378621;
+  --secondary-gold: #C7AC25;
   --dark-gray: #333333;
   --light-gray: #EEEEEE;
   --white: #FFFFFF;
@@ -112,7 +112,7 @@ header {
 }
 
 header h1 {
-  color: var(--black);
+  color: var(--white);
   flex: 1;
   margin-bottom: 0;
   min-width: 200px;
