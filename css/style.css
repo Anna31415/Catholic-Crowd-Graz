@@ -31,7 +31,7 @@
   
   /* Text Effects */
   --text-shadow-subtle: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  --text-shadow-strong: 2px 2px 12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.4);
+  --text-shadow-strong: 5px 5px 0px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 /* Reset */
