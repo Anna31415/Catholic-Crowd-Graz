@@ -141,7 +141,7 @@ function renderCalendar() {
     if (dateStr === selectedDate) classNames.push('selected');
     
  const className = classNames.join(' ');
-    html += `<td class="${className}" onclick="openEventPanel('${dateStr}')">
+    html += `<td class="${className}" onclick="openEventPanel('${dateStr}')" mouseenter="openEventPanel('${dateStr}')" mouseover="openEventPanel('${dateStr}')">
       <strong>${currentCell.getDate()}</strong>
       <div class="events">`;
 
