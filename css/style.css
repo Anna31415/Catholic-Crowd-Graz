@@ -415,24 +415,34 @@ main {
 }
 
 #calendar {
-  background-color: var(--white);;
+  background-color: var(--white);
   border-radius: 4px;
-  overflow-x: auto;
+  overflow-x: scroll;
+  scrollbar-color: var(--primary-green);
+}
+
+
+@media (min-width: 1200px) {
+  #calendar {
+    background-color: var(--white);;
+    border-radius: 4px;
+    overflow-x: auto;
+  }
 }
 
 
 @media (max-width: 767px) { /*für mobile Geräte*/
   #calendar {
-    margin-left: -2.8rem;
-    margin-right: -2.8rem;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
     border-radius: 0;
   }
 }
 
 #calendar table {
-  width: auto;  /*die Scroll-Bar hängt mit dieser Zeile zusammen*/
+  width: auto; /*die Scroll-Bar hängt mit dieser Zeile zusammen*/
+  min-width: 100%;
   table-layout: fixed;
-  overflow: hidden;
   }
 
 
@@ -443,8 +453,6 @@ main {
   overflow: hidden;
 }
 }
-
-
 
 
 #calendar th,
@@ -773,3 +781,9 @@ footer a:hover {
 }
 
 
+/* Impressum */
+.container-imprint-content {
+  background-color: #f9f9f9;
+  background-image: none;
+
+}
