@@ -36,7 +36,8 @@ function filterEventsBySearch(searchText) {
   } else {
     filteredEvents = events
       .filter(e => `${e.title} ${e.organization} ${e.description}`.toLowerCase().includes(query))
-      .sort((a, b) => new Date(a.date) - new Date(b.date));
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .sort((a, b) => a.startTime.localeCompare(b.startTime));
     
     resultsList.innerHTML = filteredEvents.length === 0 
       ? '<div class="result-empty">Keine Events gefunden</div>'
