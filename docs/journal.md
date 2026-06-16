@@ -293,3 +293,7 @@ Implementation (Vanilla JavaScript MVP)
 Kalender-Design herumprobiert
 Buttons für mobile neu angeordnet
 10.6. Event-Panel an Search-Panel angepasst (ansprechenderes Design)
+Accesibility verbessert (device-independent event-handlers, label für Input und höherer Kontrast)
+11.6.
+Scroll-Bar für Tablet und Handy
+15.06. Impressum aktualisiert

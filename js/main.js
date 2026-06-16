@@ -75,10 +75,6 @@ function parseCSV(csvText) {
     .filter(event => {
       // Validierung: Titel, Datum, Org erforderlich
       return event.title && event.date && event.organization;
-    })
-    .filter(event => {
-      // Nur zukünftige Events (ab heute)
-      return new Date(event.date) >= new Date(new Date().toDateString());
     });
 }
 
