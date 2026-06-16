@@ -17,9 +17,9 @@
 
   /* Größen (Mobile-first) */
   --font-size-body: 16px;
-  --font-size-h1: 1.75rem;
-  --font-size-h2: 1.25rem;
-  --font-size-h3: 1rem;
+  --font-size-h1: 3rem;
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.1rem;
 
   /* Spacing */
   --spacing-base: 1rem;
@@ -204,12 +204,6 @@ header nav a:hover {
   text-shadow: var(--text-shadow-strong);
 }
 
-@media (max-width: 767px) {
-  .banner {
-    background-attachment: scroll;
-  }
-}
-
 @media (min-width: 768px) {
   .banner {
     padding: 4rem var(--spacing-double);
@@ -250,12 +244,6 @@ main {
   background-position: center;
   background-attachment: fixed;
   background-color: #fafafa;
-}
-
-@media (max-width: 767px) {
-  main {
-    background-attachment: scroll;
-  }
 }
 
 #calendar-controls {
@@ -708,7 +696,6 @@ main {
 @media (max-width: 767px) {
   .about {
     padding-bottom: calc(var(--spacing-large) + var(--spacing-large));
-    background-attachment: scroll;
   }
 }
 
