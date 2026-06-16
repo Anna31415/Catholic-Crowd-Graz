@@ -522,6 +522,13 @@ main {
   display: none;
 }
 
+@media (max-width: 767px) {
+  #event-panel {
+    max-width: 100%;
+  }
+}
+
+
 @keyframes slideInRight {
   from {
     transform: translateX(100%);
@@ -586,6 +593,12 @@ main {
   overflow-y: auto;
   animation: slideInLeft 0.3s ease;
   display: none;
+}
+
+@media (max-width: 767px) {
+  #search-panel {
+    max-width: 100%;
+  }
 }
 
 @keyframes slideInLeft {
