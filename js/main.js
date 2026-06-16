@@ -153,7 +153,7 @@ function renderCalendar() {
       
       if (isMobile) {
         // Verfügbare Breite pro Spalte ca. 40-50px auf mobil → ~6 Zeichen
-        maxLength = 999999;
+        maxLength = 20;
       }
       
       const title = event.title.length > maxLength ? event.title.slice(0, maxLength - 2) + '..' : event.title;
