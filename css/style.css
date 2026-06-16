@@ -833,3 +833,120 @@ footer a:hover {
   background-image: none;
 
 }
+
+/* ========== Mobile Kalender-Hilfe ========== */
+
+/* Info-Button – nur auf Mobile */
+@media (max-width: 767px) {
+  .calendar-help-btn {
+    display: block;
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: var(--spacing-base);
+    margin-left: 0rem;
+    margin-right: 0rem;
+    padding-left: var(--spacing-base);
+    padding-right: var(--spacing-base);
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .calendar-help-btn:hover {
+    background-color: var(--secondary-gold);
+    color: var(--dark-gray);
+  }
+}
+
+/* Desktop – kein Info-Button */
+@media (min-width: 768px) {
+  .calendar-help-btn {
+    display: none;
+  }
+}
+
+/* Hilfe-Modal */
+.calendar-help-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-help-modal.show {
+  display: flex;
+}
+
+.calendar-help-content {
+  background-color: var(--white);
+  padding: var(--spacing-large);
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.calendar-help-content h3 {
+  margin-bottom: var(--spacing-base);
+  color: var(--primary-green);
+  margin-top: 0;
+}
+
+.calendar-help-content p {
+  margin-bottom: 0;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--dark-gray);
+}
+
+.close-help-btn {
+  position: absolute;
+  top: var(--spacing-half);
+  right: var(--spacing-half);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--primary-green);
+  transition: opacity 0.2s ease;
+}
+
+.close-help-btn:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 767px) {
+  .calendar-help-modal {
+    align-items: flex-end;
+  }
+
+  .calendar-help-content {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 8px 8px 0 0;
+  }
+}

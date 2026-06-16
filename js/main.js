@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderCalendar();
   setupEventListeners();
   setupSearchListeners();
+  setupCalendarHelpButton();
 });
 
 // ========================================
@@ -257,4 +258,33 @@ function setupEventListeners() {
     loadEvents();
     renderCalendar();
   }, 5 * 60 * 1000);
+}
+
+// ========================================
+// KALENDER HILFE BUTTON
+// ========================================
+
+function setupCalendarHelpButton() {
+  const helpBtn = document.getElementById('calendar-help-btn');
+  const modal = document.getElementById('calendar-help-modal');
+  const closeBtn = document.getElementById('close-help-modal');
+  
+  if (!helpBtn || !modal) return;
+  
+  // Modal öffnen
+  helpBtn.addEventListener('click', () => {
+    modal.classList.add('show');
+  });
+  
+  // Modal schließen (X-Button)
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('show');
+  });
+  
+  // Modal schließen (außerhalb klicken)
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('show');
+    }
+  });
 }
