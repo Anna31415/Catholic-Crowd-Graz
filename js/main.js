@@ -139,7 +139,7 @@ function renderCalendar() {
     
  const className = classNames.join(' ');
     html += `<td tabindex="0" class="${className}" onclick="openEventPanel('${dateStr}')" onkeydown="openEventPanel('${dateStr}')">
-      <strong>${currentCell.getDate()}</strong
+      <strong>${currentCell.getDate()}</strong>
       <div class="events">`;
 
 
