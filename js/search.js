@@ -17,10 +17,9 @@ function renderEventItem(event) {
     <div class="result-item">
       <h4>${event.title}</h4>
       <p><strong>${event.organization}</strong></p>
-      <div class="result-meta">
-        <span><strong>📅</strong> ${dateFormatted}</span>
-        <span><strong>🕐</strong> ${event.startTime}${event.endTime ? ' – ' + event.endTime : ''}</span>
-      </div>
+        <p><strong>📅</strong> ${dateFormatted}</p>
+        <p><strong>🕐</strong> ${event.startTime}${event.endTime ? ' – ' + event.endTime : ''}</p>
+     
       <p><strong>📍 Ort:</strong> ${event.location || 'TBA'}</p>
       ${event.description ? `<p><strong>📝 Beschreibung:</strong><br>${event.description}</p>` : ''}
     </div>
