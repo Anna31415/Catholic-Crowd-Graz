@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupEventListeners();
   setupSearchListeners();
   setupCalendarHelpButton();
+  setupCalendarScrollShadows();
 });
 
 // ========================================
@@ -175,6 +176,7 @@ function renderCalendar() {
   
   html += '</tr></tbody></table>';
   document.getElementById('calendar').innerHTML = html;
+  updateCalendarScrollShadows();
 }
 
 function getEventsForDate(dateStr) {
@@ -230,6 +232,102 @@ function openEventPanel(dateStr) {
   `;
   
   panel.style.display = 'block';
+}
+
+// ========================================
+// 5. EVENT-LISTENERS
+// ========================================
+
+// ========================================
+// 4b. CALENDAR SCROLL SHADOWS (Mobile)
+// ========================================
+
+let shadowLeft = null;
+let shadowRight = null;
+let shadowPositionUpdateScheduled = false;
+
+function setupCalendarScrollShadows() {
+  const isMobile = window.innerWidth <= 767;
+  if (!isMobile) return;
+
+  const calendarEl = document.getElementById('calendar');
+  if (!calendarEl) return;
+
+  // Create shadow elements if they don't exist
+  if (!shadowLeft) {
+    shadowLeft = document.createElement('div');
+    shadowLeft.id = 'calendar-shadow-left';
+    shadowLeft.style.cssText = 'position: fixed; left: 0; top: 0; width: 20px; height: 100%; background: linear-gradient(to right, rgba(0, 0, 0, 0.35), transparent); pointer-events: none; z-index: 10; opacity: 0; transition: opacity 0.2s ease;';
+    document.body.appendChild(shadowLeft);
+  }
+
+  if (!shadowRight) {
+    shadowRight = document.createElement('div');
+    shadowRight.id = 'calendar-shadow-right';
+    shadowRight.style.cssText = 'position: fixed; right: 0; top: 0; width: 20px; height: 100%; background: linear-gradient(to left, rgba(0, 0, 0, 0.35), transparent); pointer-events: none; z-index: 10; opacity: 0; transition: opacity 0.2s ease;';
+    document.body.appendChild(shadowRight);
+  }
+
+  // Initial update
+  updateCalendarScrollShadows();
+
+  // Horizontal scroll of calendar (opacity only)
+  calendarEl.addEventListener('scroll', updateCalendarScrollShadows);
+
+  // Window scroll (schedule position update)
+  window.addEventListener('scroll', scheduleCalendarShadowPositionUpdate);
+  window.addEventListener('resize', updateCalendarScrollShadows);
+}
+
+function scheduleCalendarShadowPositionUpdate() {
+  if (!shadowPositionUpdateScheduled) {
+    shadowPositionUpdateScheduled = true;
+    requestAnimationFrame(() => {
+      updateCalendarShadowPositions();
+      shadowPositionUpdateScheduled = false;
+    });
+  }
+}
+
+function updateCalendarShadowPositions() {
+  if (!shadowLeft || !shadowRight) return;
+  
+  const calendarEl = document.getElementById('calendar');
+  if (!calendarEl) return;
+
+  const calendarRect = calendarEl.getBoundingClientRect();
+  
+  // Update left shadow position
+  shadowLeft.style.left = calendarRect.left + 'px';
+  shadowLeft.style.top = calendarRect.top + 'px';
+  shadowLeft.style.height = calendarRect.height + 'px';
+  
+  // Update right shadow position
+  shadowRight.style.left = (calendarRect.right - 20) + 'px';
+  shadowRight.style.top = calendarRect.top + 'px';
+  shadowRight.style.height = calendarRect.height + 'px';
+}
+
+function updateCalendarScrollShadows() {
+  const isMobile = window.innerWidth <= 767;
+  const calendarEl = document.getElementById('calendar');
+  
+  if (!isMobile || !calendarEl || !shadowLeft || !shadowRight) {
+    if (shadowLeft) shadowLeft.style.opacity = '0';
+    if (shadowRight) shadowRight.style.opacity = '0';
+    return;
+  }
+
+  // Check scroll state
+  const canScrollLeft = calendarEl.scrollLeft > 0;
+  const canScrollRight = calendarEl.scrollLeft < calendarEl.scrollWidth - calendarEl.clientWidth;
+
+  // Update opacity based on scroll state
+  shadowLeft.style.opacity = canScrollLeft ? '1' : '0';
+  shadowRight.style.opacity = canScrollRight ? '1' : '0';
+
+  // Also update position (important for first load and resize)
+  updateCalendarShadowPositions();
 }
 
 // ========================================

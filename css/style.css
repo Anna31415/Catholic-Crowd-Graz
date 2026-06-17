@@ -396,6 +396,10 @@ main {
   #search-container {
     flex-direction: column;
     align-items: center;
+    margin-left: -3rem;
+    margin-right: -3rem;
+    padding-left: var(--spacing-base);
+    padding-right: var(--spacing-base);
   }
 
   #search-input {
@@ -438,6 +442,8 @@ main {
 
 @media (max-width: 767px) { /*für mobile Geräte*/
   #calendar {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
     border-radius: 0;
   }
 }
