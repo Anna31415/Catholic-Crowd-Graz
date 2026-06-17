@@ -13,7 +13,7 @@
 
 :root {
   /* Farben */
-  --primary-green: #ff0000;
+  --primary-green: #378621;
   --secondary-gold: #D1BC53;
   --dark-gray: #1f1f1f;
   --light-gray: #EEEEEE;
@@ -60,16 +60,11 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto 1fr auto auto;
-  height: auto;
-  width: auto;
-}
   
-
-.banner, main, .about {
   background-image: url('../images/pexels-usidz-36551806.jpg');
-  background-size: cover;
+  background-size: auto 100%;
   background-position: center;
-  background-attachment: fixed;
+
   }
 
 
