@@ -61,7 +61,6 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: auto auto 1fr auto auto;
   min-height: 100svh;
-  position: relative;
   background-image: url('../images/pexels-usidz-36551806.jpg');
   background-size: cover;
   background-position: center;
