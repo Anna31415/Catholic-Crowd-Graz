@@ -297,3 +297,6 @@ Accesibility verbessert (device-independent event-handlers, label für Input und
 11.6.
 Scroll-Bar für Tablet und Handy
 15.06. Impressum aktualisiert
+
+17.06: Die Erfahrung auf Handy verbessert. Schatten am Rand des Kalender hinzugefügt wenn scrollable (nur auf mobile) 
+Veränderung der Hintergrund-Bildgröße auf mobile beim scrollen verhindert. Lösung: Unterschiedliche background-images einstellungen für mobile und desktop, wobei bei mobile "background-size: auto 100%;" und kein background-attachment. Problem: uf Mobilgeräten wird die Browser-UI (Adressleiste, Toolbar) beim Scrollen ein- und ausgeblendet. Dadurch ändert sich ständig die tatsächliche Viewport-Höhe. Der Browser berechnet dann das cover-Bild neu, wodurch es aussieht, als würde hinein- und herausgezoomt werden.
