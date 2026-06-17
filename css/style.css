@@ -71,7 +71,7 @@ body {
 @media (max-width: 767px) {
   body {
     background-image: url('../images/img-graz-cropped.jpg');
-    background-size: contain;
+    background-size: auto;
   }
 }
 
