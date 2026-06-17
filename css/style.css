@@ -429,7 +429,7 @@ main {
   overflow-x: auto;
   scrollbar-color: var(--primary-green);
   position: relative;
-  scrollbar-gutter: stable;
+  
 }
 
 #calendar-and-shadows {
