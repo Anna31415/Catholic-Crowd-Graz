@@ -67,10 +67,19 @@ body {
 
 .banner, main, .about {
   background-image: url('../images/pexels-usidz-36551806.jpg');
+  background-size: 100% auto;
+  background-position: center;
+  background-attachment: fixed;
+  }
+
+
+@media (min-width: 1200px) {
+  .banner, main, .about {
+  background-image: url('../images/pexels-usidz-36551806.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-
+  }
 }
 
 /* Tablet (768px+) */
