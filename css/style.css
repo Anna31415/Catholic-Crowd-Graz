@@ -987,3 +987,13 @@ footer a:hover {
   height: 100%;
   pointer-events: none; /* Damit die Schatten nicht die Interaktion blockieren */
 }
+
+
+/* Fix für wackliges Background auf Mobile */
+@media (max-width: 767px) {
+  .banner, main, .about {
+     background-image: url('../images/pexels-usidz-36551806.jpg');
+     background-attachment: fixed;
+     background-size: auto 100%;
+    }
+  }
