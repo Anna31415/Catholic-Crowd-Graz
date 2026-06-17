@@ -74,7 +74,7 @@ body {
   width: 200dvw;
   height: 200dvh;
   background-image: url('../images/img-graz-cropped.jpg');
-  background-size: auto 1500px;
+  background-size: auto 1200px;
   z-index: -1;
 }
 }
@@ -279,7 +279,7 @@ main {
 
 #calendar-controls button {
   font-size: 1rem;
-  background-color: var(--dark-gray);
+  background-color: var(--primary-green);
   color: var(--white);
   padding: var(--spacing-half) var(--spacing-base);
   border: none;
