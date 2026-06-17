@@ -61,19 +61,22 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: auto auto 1fr auto auto;
   min-height: 100dvh;
+  position: relative;
 }
 
-/* Fix für wackliges Background-Image*/
-
-  body {
-    background-image: url('../images/pexels-usidz-36551806.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    }
-  
-
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/pexels-usidz-36551806.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
 
 /* Tablet (768px+) */
 @media (min-width: 768px) {
