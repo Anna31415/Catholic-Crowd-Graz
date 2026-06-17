@@ -62,8 +62,9 @@ body {
   grid-template-rows: auto auto 1fr auto auto;
   
   background-image: url('../images/pexels-usidz-36551806.jpg');
-  background-size: auto 100%;
+  background-size: initial;
   background-position: center;
+  background-attachment: fixed;
 
   }
 
