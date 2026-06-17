@@ -257,14 +257,14 @@ function setupCalendarScrollShadows() {
   if (!shadowLeft) {
     shadowLeft = document.createElement('div');
     shadowLeft.id = 'calendar-shadow-left';
-    shadowLeft.style.cssText = 'position: fixed; left: 0; top: 0; width: 20px; height: 100%; background: linear-gradient(to right, rgba(0, 0, 0, 0.35), transparent); pointer-events: none; z-index: 10; opacity: 0; transition: opacity 0.2s ease;';
+    shadowLeft.style.cssText = 'position: fixed; left: 0; top: 0; width: 20px; height: 100%; background: linear-gradient(to right, rgba(0, 0, 0, 0.35), transparent); pointer-events: none; z-index: 999; opacity: 0; transition: opacity 0.2s ease;';
     document.body.appendChild(shadowLeft);
   }
 
   if (!shadowRight) {
     shadowRight = document.createElement('div');
     shadowRight.id = 'calendar-shadow-right';
-    shadowRight.style.cssText = 'position: fixed; right: 0; top: 0; width: 20px; height: 100%; background: linear-gradient(to left, rgba(0, 0, 0, 0.35), transparent); pointer-events: none; z-index: 10; opacity: 0; transition: opacity 0.2s ease;';
+    shadowRight.style.cssText = 'position: fixed; right: 0; top: 0; width: 20px; height: 100%; background: linear-gradient(to left, rgba(0, 0, 0, 0.35), transparent); pointer-events: none; z-index: 999; opacity: 0; transition: opacity 0.2s ease;';
     document.body.appendChild(shadowRight);
   }
 
