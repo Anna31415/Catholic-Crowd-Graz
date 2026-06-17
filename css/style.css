@@ -60,19 +60,12 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto 1fr auto auto;
-  min-height: 100dvh;
+  min-height: 100svh;
   position: relative;
   background-image: url('../images/pexels-usidz-36551806.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-}
-
-@media (max-width: 767px) {
-  body {
-    background-image: url('../images/img-graz-cropped.jpg');
-    background-size: auto;
-  }
 }
 
 /* Tablet (768px+) */
