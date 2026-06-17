@@ -318,9 +318,9 @@ function updateCalendarScrollShadows() {
     return;
   }
 
-  // Check scroll state
+  // Check scroll state with 1px tolerance for rounding issues
   const canScrollLeft = calendarEl.scrollLeft > 0;
-  const canScrollRight = calendarEl.scrollLeft < calendarEl.scrollWidth - calendarEl.clientWidth;
+  const canScrollRight = calendarEl.scrollLeft + calendarEl.clientWidth < calendarEl.scrollWidth - 1;
 
   // Update opacity based on scroll state
   shadowLeft.style.opacity = canScrollLeft ? '1' : '0';
