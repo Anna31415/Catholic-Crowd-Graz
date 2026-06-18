@@ -275,6 +275,15 @@ main {
   align-items: center;
   margin-bottom: var(--spacing-large);
   flex-wrap: wrap;
+  margin-left: -2rem;
+  margin-right: -2rem;
+}
+
+@media (min-width: 767px) {
+  #calendar-controls {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 #calendar-controls button {
@@ -433,7 +442,7 @@ main {
   text-shadow: var(--text-shadow-strong);
   paint-order: stroke fill;
   -webkit-text-stroke: 3px var(--dark-gray);
-  border-bottom: 2px solid var(--secondary-gold);
+  border-bottom: 3px solid var(--secondary-gold);
   padding-bottom: var(--spacing-half);
 }
 
@@ -474,8 +483,8 @@ main {
 
 @media (max-width: 767px) { /*für mobile Geräte*/
   #calendar-and-shadows {
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
+    margin-left: -2.5rem;
+    margin-right: -2.5rem;
   }
 
   #calendar {
