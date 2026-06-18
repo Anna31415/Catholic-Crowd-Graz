@@ -26,7 +26,7 @@
 
   /* Größen (Mobile-first) */
   --font-size-body: 16px;
-  --font-size-h1: 3rem;
+  --font-size-h1: 2.3rem;
   --font-size-h2: 2rem;
   --font-size-h3: 1.1rem;
 
@@ -210,7 +210,7 @@ header nav a:hover {
 }
 
 .banner h2 {
-  font-size: 2.5rem;
+  font-size: 1.9rem;
   font-weight: 700;
   max-width: 900px;
   line-height: 1.4;

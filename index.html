@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
     <title>Catholic Crowd Graz – Event Calendar</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -22,11 +22,6 @@
     </section>
 
     <main id="veranstaltungen">
-        <div id="calendar-controls">
-            <button id="prev-month">← Vorheriger Monat</button>
-            <h2 id="month-title"></h2>
-            <button id="next-month">Nächster Monat →</button>
-        </div>
         <div id="search-container">
             <label for="search-input" class="sr-only">Suche</label>
             <input type="text" id="search-input" placeholder="Nach Event suchen...">
@@ -34,6 +29,12 @@
             <button id="clear-search">Suche zurücksetzen</button>
         </div>
         <button id="calendar-help-btn" class="calendar-help-btn">ℹ️ Wie benutzt man den Kalender?</button>
+        <div id="calendar-controls">
+            <button id="prev-month">← Vorheriger Monat</button>
+            <h2 id="month-title"></h2>
+            <button id="next-month">Nächster Monat →</button>
+        </div>
+        
         <div id="calendar-and-shadows">
             <div id="calendar"></div>
             <div id="shadows"></div>
