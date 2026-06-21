@@ -1,18 +1,18 @@
-# 🙏 Catholic Crowd Graz – Event Kalender
+#  Catholic Crowd Graz – Event Kalender
 
 Ein moderner, responsiver **Event-Kalender** für die Catholic Crowd Graz Community.
 
-## 📋 Was ist das?
+##  Was ist das?
 
 **Catholic Crowd Graz** ist eine interaktive Veranstaltungskalender-Webseite, die:
 
-- 📅 **Events in einem Kalender anzeigt** – Übersichtliche Monatsansicht
-- 📍 **Event-Details präsentiert** – Klick auf ein Datum → Seitenleiste mit allen Infos
-- 🗓️ **Daten aus Google Sheets lädt** – Nur die Tabelle aktualisieren, keine Code-Änderungen nötig
-- 📱 **Vollständig responsive ist** – Mobile, Tablet & Desktop-tauglich
-- ⚡ **Ohne externe Libraries läuft** – Vanilla HTML, CSS & JavaScript
+- **Events in einem Kalender anzeigt** – Übersichtliche Monatsansicht
+- **Event-Details präsentiert** – Klick auf ein Datum → Seitenleiste mit allen Infos
+- **Daten aus Google Sheets lädt** – Nur die Tabelle aktualisieren, keine Code-Änderungen nötig
+- **Vollständig responsive ist** – Mobile, Tablet & Desktop-tauglich
+- **Ohne externe Libraries läuft** – Vanilla HTML, CSS & JavaScript
 
-## 🚀 Wie man es öffnet
+## Wie man es öffnet
 
 ### Schnellstart (lokal am PC)
 
@@ -26,26 +26,12 @@ Ein moderner, responsiver **Event-Kalender** für die Catholic Crowd Graz Commun
    - Doppelklick auf `index.html` im Explorer, ODER
    - Im Browser: `Datei` → `Datei öffnen` → `index.html` auswählen
 
-3. **Fertig!** 🎉
+3. **Fertig!** 
    - Kalender wird geladen
    - Events aus Google Sheets werden automatisch angezeigt
 
 ### Online-Version
-- Link zur live-Website (wenn gehostet): [hier einfügen]
-
-## 📁 Projektstruktur
-
-```
-Catholic-Crowd-Graz/
-├── index.html          # Seite (HTML Struktur)
-├── css/
-│   └── style.css       # Styling & Layout
-├── js/
-│   └── main.js         # Event-Logik & Kalender-Rendering
-├── tutorial/
-│   └── TUTORIAL.md     # Lernressource für HTML/CSS
-└── README.md           # Diese Datei
-```
+- Link zur live-Website: https://anna31415.github.io/Catholic-Crowd-Graz/
 
 ## ⚙️ Technische Details
 
@@ -54,12 +40,7 @@ Catholic-Crowd-Graz/
 - **Responsive:** Mobile-first (320px, 768px, 1200px+)
 - **Browser:** Alle modernen Browser (Chrome, Firefox, Safari, Edge)
 
-## 📚 Mehr Infos
+## Mehr Infos
 
 - Siehe `tutorial/TUTORIAL.md` für eine **detaillierte Erklärung** von HTML, CSS & Layout
 - Alle Events kommen aus einer Google Sheets Tabelle (Link im `js/main.js`)
-
----
-
-**Entwickler:** Anna  
-**Semester:** SS 2026 – Web-Entwicklung
