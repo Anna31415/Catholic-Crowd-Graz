@@ -74,9 +74,9 @@ Min-Width Breakpoints:
 ## Farben
 
 **Primärfarben:**
-- 🟢 **Primary Green** `#b8de97` (Limettes Grün – weich, freundlich, modern)
-- 🟨 **Secondary Gold** `#b8a127` (Dunkles Goldbraun – elegant, warm, natürlich)
-
+- 🟢 **Primary Green** `#378621`
+- 🟨 **Secondary Gold** `#D1BC53`
+- Begründung: Grün und Gold haben eine besondere symbolische Bedeutung. 
 **Neutrale Farben:**
 - ⚪ Weiß `#FFFFFF` (Hintergrund, Text)
 - ⬛ Schwarz `#000000` (nicht verwendet)
@@ -84,15 +84,14 @@ Min-Width Breakpoints:
 - 🩶 Hellgrau `#EEEEEE` (Borders, subtle backgrounds)
 
 **Verwendung:**
-- **Header:** Pastelgrün `#b8de97` (Hintergrund)
-- **Header-Titel "Catholic Crowd Graz":** Gold `#b8a127`
-- **Header-Unterstrich:** Gold `#b8a127` (3px)
-- **Navigation (Start, Veranstaltungen, Über):** Weiß
-- **Buttons (Vorheriger/Nächster Monat):** Grün `#b8de97` (Hintergrund), Weiß Text; Hover → Gold `#b8a127`
-- **Wochentage (Mo, Di, Mi...):** Grün `#b8de97` (Hintergrund), Weiß Text
-- **Monatsname:** Weiß mit Schatten, Gold `#b8a127` Unterstrich
-- **Heute-Markierung:** Gold `#b8a127` Hintergrund (30% Opazität)
-- **Ausgewählter Tag:** Grün `#b8de97` Rahmen (2px, ohne Füllung)
+- **Header:** Grün-goldener Verlauf (Hintergrund)
+- **Header-Titel "Catholic Crowd Graz":** Weiß
+- **Navigation (Start, Veranstaltungen, Über):** Dunkel-Grau
+- **Buttons (Vorheriger/Nächster Monat):** Grün (Hintergrund), Weiß Text; Hover → Gold
+- **Wochentage (Mo, Di, Mi...):** Grün  (Hintergrund), Weiß Text
+- **Monatsname:** Weiß mit Schatten, Goldender  Unterstrich
+- **Heute-Markierung:** Gold, Hintergrund (30% Opazität)
+- **Ausgewählter Tag:** Grün,  Rahmen (2px, ohne Füllung)
 - **Events im Kalender:** Text in dunkelgrau auf weißem Hintergrund
 
 
