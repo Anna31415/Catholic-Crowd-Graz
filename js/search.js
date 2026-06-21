@@ -30,17 +30,18 @@ function filterEventsBySearch(searchText) {
   const query = searchText.toLowerCase().trim();
   
   if (query === '') {
-    filteredEvents = [...events];
+    // Clear search results and hide panel; calendar still shows all events
+    searchResults = [];
     searchPanel.style.display = 'none';
   } else {
-    filteredEvents = events
+    searchResults = events
       .filter(e => `${e.title} ${e.organization} ${e.description}`.toLowerCase().includes(query))
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .sort((a, b) => a.startTime.localeCompare(b.startTime));
     
-    resultsList.innerHTML = filteredEvents.length === 0 
+    resultsList.innerHTML = searchResults.length === 0 
       ? '<div class="result-empty">Keine Events gefunden</div>'
-      : filteredEvents.map(renderEventItem).join('');
+      : searchResults.map(renderEventItem).join('');
     
     searchPanel.style.display = 'block';
   }

@@ -10,7 +10,7 @@ const CACHE_EXPIRY_KEY = 'ccg_cache_expiry';
 const CACHE_DURATION = 5 * 60 * 1000; // 5 Minuten
 
 let events = [];
-let filteredEvents = [];
+let searchResults = [];
 let currentDate = new Date();
 let selectedDate = null;
 
@@ -41,7 +41,8 @@ async function loadEvents() {
     
     const csvText = await response.text();
     events = parseCSV(csvText);
-    filteredEvents = [...events];
+    // calendar always reads from `events`; keep searchResults empty by default
+    searchResults = [];
     
     // Cache speichern
     localStorage.setItem(CACHE_KEY, JSON.stringify(events));
@@ -58,12 +59,12 @@ function loadFromCache() {
   const cached = localStorage.getItem(CACHE_KEY);
   if (cached) {
     events = JSON.parse(cached);
-    filteredEvents = [...events];
+    searchResults = [];
     console.log(`⚠️ Cache genutzt: ${events.length} Events`);
   } else {
     console.log('❌ Keine Cache vorhanden');
     events = [];
-    filteredEvents = [];
+    searchResults = [];
   }
 }
 
@@ -142,7 +143,7 @@ function renderCalendar() {
     if (dateStr === selectedDate) classNames.push('selected');
     
  const className = classNames.join(' ');
-    html += `<td tabindex="0" class="${className}" onclick="openEventPanel('${dateStr}')" onkeydown="openEventPanel('${dateStr}')">
+   html += `<td tabindex="0" class="${className}" onclick="openEventPanel('${dateStr}')" onkeydown="handleCalendarCellKeydown(event, '${dateStr}')">
       <strong>${currentCell.getDate()}</strong>
       <div class="events">`;
 
@@ -183,9 +184,15 @@ function renderCalendar() {
 }
 
 function getEventsForDate(dateStr) {
-  return filteredEvents
-  .filter(e => e.date === dateStr)
-  .sort((a, b) => a.startTime.localeCompare(b.startTime));
+  // Always return from the full `events` list so the calendar shows all events.
+  return events
+    .filter(e => e.date === dateStr)
+    .sort((a, b) => a.startTime.localeCompare(b.startTime));
+}
+
+function handleCalendarCellKeydown(event, dateStr) {
+  if (event.key !== 'Enter') return;
+  openEventPanel(dateStr);
 }
 
 // ========================================
@@ -221,7 +228,7 @@ function openEventPanel(dateStr) {
   });
   
   details.innerHTML = `
-    <h3>${dateFormatted}</h3>
+    <h2>${dateFormatted}</h2>
     ${dayEvents.map(e => `
       <div class="event-detail">
         <h4>${e.title}</h4>
@@ -235,6 +242,21 @@ function openEventPanel(dateStr) {
   `;
   
   panel.style.display = 'block';
+}
+
+function closeEventPanel() {
+  document.getElementById('event-panel').style.display = 'none';
+}
+
+function closeSearchPanel() {
+  const panel = document.getElementById('search-panel');
+  if (panel) panel.style.display = 'none';
+}
+
+function handleGlobalEscape(event) {
+  if (event.key !== 'Escape') return;
+  closeEventPanel();
+  closeSearchPanel();
 }
 
 
@@ -317,9 +339,10 @@ function setupEventListeners() {
   });
   
   // Close Event Panel
-  document.getElementById('close-panel').addEventListener('click', () => {
-    document.getElementById('event-panel').style.display = 'none';
-  });
+  document.getElementById('close-panel').addEventListener('click', closeEventPanel);
+
+  // Global keyboard close behavior
+  document.addEventListener('keydown', handleGlobalEscape);
   
   // Auto-Refresh Events (jede 5 Minuten)
   setInterval(() => {

@@ -288,15 +288,13 @@ Implementation (Vanilla JavaScript MVP)
 
 
 ## Last steps: Optimizaton for Submission
-5.6.: html mit W3C Validator geprüft -> <p> zu <h2> geändert in <section id="banner">
-9.6. Am Design gearbeitet: Überschrift "Veranstaltungen..." größer gemacht
-Kalender-Design herumprobiert
-Buttons für mobile neu angeordnet
-10.6. Event-Panel an Search-Panel angepasst (ansprechenderes Design)
+**5.6.**: html mit W3C Validator geprüft -> <p> zu <h2> geändert in <section id="banner">
+**9.6.** Am Design gearbeitet: Überschrift "Veranstaltungen..." vergrößert, Buttons für mobile neu angeordnet
+**10.6.**_ Event-Panel an Search-Panel angepasst (ansprechenderes Design), 
 Accesibility verbessert (device-independent event-handlers, label für Input und höherer Kontrast)
-11.6.
-Scroll-Bar für Tablet und Handy
-15.06. Impressum aktualisiert
-
-17.06: Die Erfahrung auf Handy verbessert. Schatten am Rand des Kalender hinzugefügt wenn scrollable (nur auf mobile) 
-Veränderung der Hintergrund-Bildgröße auf mobile beim scrollen verhindert. Lösung: Unterschiedliche background-images einstellungen für mobile und desktop, wobei bei mobile "background-size: auto 100%;" und kein background-attachment. Problem: uf Mobilgeräten wird die Browser-UI (Adressleiste, Toolbar) beim Scrollen ein- und ausgeblendet. Dadurch ändert sich ständig die tatsächliche Viewport-Höhe. Der Browser berechnet dann das cover-Bild neu, wodurch es aussieht, als würde hinein- und herausgezoomt werden.
+**11.6.**: Scroll-Bar für Tablet und Handy integriert
+**15.06.**: Impressum aktualisiert
+**17.06** Die Darstellung auf mobilen Geräten verbessert. 
+- Schatten am Rand des Kalender hinzugefügt wenn er scrollbar ist, 
+- Veränderung der Hintergrund-Bildgröße auf mobile beim scrollen verhindert. Problem: auf Mobilgeräten wird die Browser-UI (Adressleiste, Toolbar) beim Scrollen ein- und ausgeblendet. Dadurch ändert sich ständig die tatsächliche Viewport-Höhe. Der Browser berechnet dann das cover-Bild neu, wodurch es aussieht, als würde hinein- und herausgezoomt werden.Lösung: Eigenes Background-Element mit position:fixed und Pixel-Angaben bei der Größe. 
+**18.06**: Große Schriftgrößen verkleinert, damit die Größe der Website auf Smartphones nicht verzerrt wird

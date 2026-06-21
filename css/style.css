@@ -64,6 +64,7 @@ body {
   }
 
 
+/* Background Images: auf mobile Pseudo-Element mit position:fixed um Veränderung der Größe bei Erscheinen/Verstecken der Adressleiste zu verhindern (das führt zu einer ständigen Änderung des Viewports, was der Referenzpunkt bei "background-attachment: fixed" ist  */
 
 @media(max-width: 767px) {
   body::before {
@@ -399,22 +400,6 @@ main {
   text-shadow: none;
 }
 
-#clear-search {
-  background-color: var(--primary-green);
-  color: var(--white);
-  padding: var(--spacing-half) var(--spacing-base);
-  border: none;
-  border-radius: 4px;
-  font-weight: 600;
-  text-shadow: var(--text-shadow-subtle);
-}
-
-#clear-search:hover {
-  background-color: var(--secondary-gold);
-  color: var(--dark-gray);
-  text-shadow: none;
-}
-
 @media (max-width: 767px) {
   #search-container {
     flex-direction: column;
@@ -429,8 +414,7 @@ main {
     width: 100%;
   }
 
-  #search-button,
-  #clear-search {
+  #search-button {
     width: auto;
   }
 }
@@ -626,33 +610,35 @@ main {
   padding: var(--spacing-base);
   border-radius: 4px;
   transition: box-shadow 0.2s ease;
-  margin: var(--spacing-base)
+  margin-bottom: var(--spacing-base);
 } 
 
 .event-detail:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.event-detail h4{
+    font-size: 1.4rem;
+    color: var(--primary-green);
+    margin-bottom: var(--spacing-half);
+  }
+.event-detail p{
+    font-size: 1.3rem;
+    color: var(--dark-gray);
+    margin-bottom: var(--spacing-half);
+  } 
+
+@media (min-width: 767px) {
 .event-detail h4 {
-  color: var(--primary-green);
-  margin-bottom: var(--spacing-half);
   font-size: 1.05rem;
 }
-
 .event-detail p {
-  margin-bottom: var(--spacing-half);
   font-size: 0.95rem;
-  color: var(--dark-gray);
-}
+}}
 
-@media (max-width: 767px) {
-  .event-detail h4{
-    font-size: 2rem;
-  }
-  .event-detail p{
-    font-size: 1.5rem;
-  } 
-}
+
+
+
 
 /* Search Panel */
 
@@ -703,18 +689,19 @@ main {
 
 #search-panel-title {
   clear: both;
-  font-size: var(--font-size-h3);
+  font-size: var(--font-size-h2);
   font-weight: 700;
   color: var(--primary-green);
-  margin-bottom: var(--spacing-double);
-  margin-top: var(--spacing-double);
+  margin-top: var(--spacing-base);
+  margin-bottom: var(--spacing-base);
 }
 
-@media (max-width: 767px) {
+@media (min-width: 767px) {
   #search-panel-title {
-    font-size: 3rem;
-    margin-top: var(--spacing-base);
-    margin-bottom: var(--spacing-base);
+    font-size: var(--font-size-h3);
+    margin-bottom: var(--spacing-double);
+    margin-top: var(--spacing-double);
+  
   }
 }
 #search-panel-results {
@@ -738,21 +725,21 @@ main {
 #search-panel .result-item h4 {
   color: var(--primary-green);
   margin-bottom: var(--spacing-half);
-  font-size: 1.05rem;
+  font-size: 1.4rem;
 }
 
 #search-panel .result-item p {
   margin-bottom: var(--spacing-half);
-  font-size: 0.95rem;
+  font-size: 1.3rem;
   color: var(--dark-gray);
 }
 
-@media (max-width: 767px) {
+@media (min-width: 767px) {
   #search-panel .result-item h4{
-    font-size: 2rem;
+    font-size: 1.05rem;
   }
   #search-panel .result-item p{
-    font-size: 1.5rem;
+    font-size: 0.95rem;
   } 
 }
 
@@ -887,16 +874,12 @@ footer a:hover {
     display: block;
     background-color: var(--primary-green);
     color: var(--white);
-    padding: 0.5rem;
+    padding: 0.3rem;
     border: none;
     border-radius: 4px;
     font-weight: 600;
     font-size: 1rem;
     margin-bottom: var(--spacing-base);
-    margin-left: 0rem;
-    margin-right: 0rem;
-    padding-left: var(--spacing-base);
-    padding-right: var(--spacing-base);
     width: 100%;
     cursor: pointer;
     transition: background-color 0.2s ease;
