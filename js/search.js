@@ -1,12 +1,31 @@
 // Catholic Crowd Graz – Search Function
 
-// Konstanten (DOM-Elemente)
-const searchInput = document.getElementById('search-input');
-const searchButton = document.getElementById('search-button');
-const searchPanel = document.getElementById('search-panel');
-const resultsList = document.getElementById('search-panel-results');
-const closeButton = document.getElementById('close-search-panel');
-const clearButton = document.getElementById('clear-search');
+// DOM-Elemente werden über Hilfsfunktionen geholt, damit die Suche auch dann
+// funktioniert, wenn das Skript vor dem vollständigen DOM geladen wird.
+
+function getSearchInput() {
+  return document.getElementById('search-input');
+}
+
+function getSearchButton() {
+  return document.getElementById('search-button');
+}
+
+function getSearchPanel() {
+  return document.getElementById('search-panel');
+}
+
+function getResultsList() {
+  return document.getElementById('search-panel-results');
+}
+
+function getCloseButton() {
+  return document.getElementById('close-search-panel');
+}
+
+function getClearButton() {
+  return document.getElementById('clear-search');
+}
 
 // Hilfsfunktion: Event-HTML generieren
 function renderEventItem(event) {
@@ -27,12 +46,25 @@ function renderEventItem(event) {
 }
 // Filter-Funktkion
 function filterEventsBySearch(searchText) {
+  const searchPanel = getSearchPanel();
+  const resultsList = getResultsList();
+  const searchInput = getSearchInput();
+
+  if (!searchPanel || !resultsList) {
+    console.warn('filterEventsBySearch: search panel elements missing');
+    return;
+  }
+
   const query = searchText.toLowerCase().trim();
   
   if (query === '') {
     // Clear search results and hide panel; calendar still shows all events
     searchResults = [];
     searchPanel.style.display = 'none';
+    resultsList.innerHTML = '';
+    if (searchInput) {
+      searchInput.value = '';
+    }
   } else {
     searchResults = events
       .filter(e => `${e.title} ${e.organization} ${e.description}`.toLowerCase().includes(query))
@@ -51,20 +83,41 @@ function filterEventsBySearch(searchText) {
 
 // Event-Listener Setup
 function setupSearchListeners() {
+  const searchInput = getSearchInput();
+  const searchButton = getSearchButton();
+  const searchPanel = getSearchPanel();
+  const resultsList = getResultsList();
+  const closeButton = getCloseButton();
+  const clearButton = getClearButton();
+
+  if (!searchInput || !searchButton || !resultsList || !searchPanel) {
+    console.warn('setupSearchListeners: search UI elements missing, skipping search setup');
+    return;
+  }
+
+  if (searchInput.dataset.searchListenersAttached === 'true') {
+    return;
+  }
+  searchInput.dataset.searchListenersAttached = 'true';
+
   searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') filterEventsBySearch(searchInput.value);
   });
-  
+
   searchButton.addEventListener('click', () => filterEventsBySearch(searchInput.value));
-  
-  closeButton.addEventListener('click', () => {
-    searchPanel.style.display = 'none';
-  });
-  
-  clearButton.addEventListener('click', () => {
-    searchInput.value = '';
-    filterEventsBySearch('');
-  });
+
+  if (closeButton) {
+    closeButton.addEventListener('click', () => {
+      searchPanel.style.display = 'none';
+    });
+  }
+
+  if (clearButton) {
+    clearButton.addEventListener('click', () => {
+      searchInput.value = '';
+      filterEventsBySearch('');
+    });
+  }
 }
 
 
