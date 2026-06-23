@@ -72,28 +72,48 @@ function loadFromCache() {
 // 2. CSV PARSING
 // ========================================
 function parseCSV(csvText) {
-  const lines = csvText.trim().split('\n');
+  const lines = csvText.trim().split(/\r?\n/);
   if (lines.length < 2) return [];
-  
-  // Skip Header (Zeile 1)
+
   return lines.slice(1)
     .map(line => parseCSVLine(line))
-    .filter(event => {
-      // Validierung: Titel, Datum, Org erforderlich
-      return event.title && event.date && event.organization;
-    });
+    .filter(event => event.title && event.date && event.organization);
 }
 
 function parseCSVLine(line) {
-  // Einfaches CSV-Parsing (funktioniert für normale Daten ohne Komma in Feldern)
-  const parts = line.split(',').map(s => s.trim().replace(/^"|"$/g, ''));
-  
+  // Geht das CSV Zeichen für Zeichen durch, damit Kommas in Anführungszeichen
+  // nicht als Trenner zählen und doppelte Anführungszeichen korrekt entschärft werden.
+  const parts = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    const nextChar = line[i + 1];
+
+    if (char === '"') {
+      if (inQuotes && nextChar === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      parts.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+
+  parts.push(current.trim());
+
   return {
     title: parts[0] || '',
     organization: parts[1] || '',
-    date: parts[2] || '', // YYYY-MM-DD
-    startTime: parts[3] || '', // HH:MM
-    endTime: parts[4] || '', // HH:MM
+    date: parts[2] || '',
+    startTime: parts[3] || '',
+    endTime: parts[4] || '',
     location: parts[5] || '',
     description: parts[6] || ''
   };
