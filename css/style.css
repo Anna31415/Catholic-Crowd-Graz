@@ -1,4 +1,6 @@
 
+/*Fonts importieren*/
+
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/roboto.woff2') format('woff2');
@@ -64,7 +66,7 @@ body {
   }
 
 
-/* Background Images: auf mobile Pseudo-Element mit position:fixed um Veränderung der Größe bei Erscheinen/Verstecken der Adressleiste zu verhindern (das führt zu einer ständigen Änderung des Viewports, was der Referenzpunkt bei "background-attachment: fixed" ist  */
+/* Background Image: auf mobile Pseudo-Element mit position:fixed um Veränderung der Größe bei Erscheinen/Verstecken der Adressleiste zu verhindern (das führt zu einer ständigen Änderung des Viewports, was der Referenzpunkt bei "background-attachment: fixed" ist  */
 
 @media(max-width: 767px) {
   body::before {
@@ -136,25 +138,30 @@ button {
 /* Header */
 
 header {
-  background: #378621;
   background: linear-gradient(180deg,rgba(55, 134, 33, 1) 0%, rgba(209, 188, 83, 1) 100%);
   padding: var(--spacing-base);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
- 
 }
 
-@media (min-width: 1200px) {
+
+@media (max-width: 767px) {
   header {
-  background: #378621;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header h1 {
+    width: 100%;
+    margin-bottom: var(--spacing-half);
+  }
+}
+
+@media (min-width: 767px) {
+  header {
   background: linear-gradient(90deg,rgba(55, 134, 33, 1) 0%, rgba(209, 188, 83, 1) 100%);
-  padding: var(--spacing-base);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
 }
 }
 
@@ -171,7 +178,13 @@ header h1 {
 
 header nav {
   display: flex;
-  gap: var(--spacing-double)
+  gap: var(--spacing-base);
+}
+
+@media (min-width: 767px) {
+  header nav {
+    gap: var(--spacing-double)
+  }
 }
 
 header nav a {
@@ -187,21 +200,7 @@ header nav a:hover {
   border-bottom-color: var(--dark-gray);
 }
 
-@media (max-width: 767px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
 
-  header h1 {
-    width: 100%;
-    margin-bottom: var(--spacing-half);
-  }
-
-  header nav {
-    gap: var(--spacing-base);
-  }
-}
 
 /* Banner */
 
@@ -337,6 +336,28 @@ main {
   flex-wrap: wrap;
 }
 
+@media (max-width: 767px) {
+  #search-container {
+    flex-direction: column;
+    align-items: center;
+    margin-left: -3rem;
+    margin-right: -3rem;
+    padding-left: var(--spacing-base);
+    padding-right: var(--spacing-base);
+  }
+
+  #search-input {
+    width: 100%;
+  }
+
+  #search-button {
+    width: auto;
+  }
+}
+
+
+
+
 #search-container button {
   font-size: 1rem;
 }
@@ -400,24 +421,6 @@ main {
   text-shadow: none;
 }
 
-@media (max-width: 767px) {
-  #search-container {
-    flex-direction: column;
-    align-items: center;
-    margin-left: -3rem;
-    margin-right: -3rem;
-    padding-left: var(--spacing-base);
-    padding-right: var(--spacing-base);
-  }
-
-  #search-input {
-    width: 100%;
-  }
-
-  #search-button {
-    width: auto;
-  }
-}
 
 #month-title {
   font-size: 2.5rem;
@@ -648,7 +651,7 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  max-width: 400px;
+  max-width: 100%;;
   background: #FFFFFF;
   background: linear-gradient(180deg,rgba(255, 255, 255, 1) 0%, rgba(209, 188, 83, 1) 100%);
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
@@ -659,9 +662,9 @@ main {
   display: none;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 767px) {
   #search-panel {
-    max-width: 100%;
+     max-width: 400px
   }
 }
 
@@ -756,12 +759,7 @@ main {
 .about {
   padding: var(--spacing-large);
   position: relative;
-}
-
-@media (max-width: 767px) {
-  .about {
-    padding-bottom: calc(var(--spacing-large) + var(--spacing-large));
-  }
+  padding-bottom: calc(var(--spacing-large) + var(--spacing-large));
 }
 
 .about::before {
@@ -802,14 +800,14 @@ main {
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 45%;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 767px) {
   .about p {
-    max-width: 100%;
+    max-width: 45%;
   }
 }
 
