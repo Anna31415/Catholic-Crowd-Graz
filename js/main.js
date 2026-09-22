@@ -80,14 +80,6 @@ function parseCSV(csvText) {
     .filter(event => event.title && event.date && event.organization);
 }
 
-function parseSheetDate(dateValue) {
-  const match = dateValue.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
-  if (!match) return '';
-
-  const [, day, month, year] = match;
-  return `${year}-${month}-${day}`;
-}
-
 function parseCSVLine(line) {
   // Geht das CSV Zeichen für Zeichen durch, damit Kommas in Anführungszeichen
   // nicht als Trenner zählen und doppelte Anführungszeichen korrekt entschärft werden.
@@ -117,13 +109,13 @@ function parseCSVLine(line) {
   parts.push(current.trim());
 
   return {
-    title: parts[1] || '',
-    organization: parts[2] || '',
-    date: parseSheetDate(parts[3] || ''),
-    startTime: parts[4] || '',
-    endTime: parts[5] || '',
-    location: parts[6] || '',
-    description: parts[7] || ''
+    title: parts[0] || '',
+    organization: parts[1] || '',
+    date: parts[2] || '',
+    startTime: parts[3] || '',
+    endTime: parts[4] || '',
+    location: parts[5] || '',
+    description: parts[6] || ''
   };
 }
 
